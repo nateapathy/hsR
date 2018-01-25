@@ -1,4 +1,4 @@
-# Session 1:
+# Session 1
 - Installing R
 - Installing RStudio
   - The relationship between RStudio and R
