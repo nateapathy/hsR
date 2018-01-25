@@ -3,11 +3,13 @@
 # install.packages("RCurl")
 # install.packages("rlist")
 # install.packages("ggplot2")
+# install.packages("stringr")
 
 library(XML)
 library(RCurl)
 library(rlist)
 library(ggplot2)
+library(stringr)
 
 theurl <- getURL("https://infogalactic.com/info/List_of_current_United_States_Senators_by_age",.opts = list(ssl.verifypeer = FALSE) )
 sen_ages <- readHTMLTable(theurl)
