@@ -1,1 +1,16 @@
-
+# Session 1:
+- Installing R
+- Installing RStudio
+  - The relationship between RStudio and R
+  - Versioning of R & RStudio - significance of software updates
+- Orienting to the RStudio Screen - the four boxes, what appears, what gets saved
+- Setting a working directory (build an R-dedicated folder for project files)
+- R Projects & why they are important to use
+- What is a package? Why do we need them?
+  - Sandbox metaphor
+  - Use tobit analysis package as example; not everything is developed by “default” or “included” stuff
+  - They are like plugins with extra features
+  - Package implications for sharing code (don’t know what packages people have, so you need the “install…” code to ensure they can do it themselves
+- Introduce the first few lines of the Senate Ages R script (installing packages, commenting, loading packages)
+  - Blog post: https://nateapathy.com/2017/12/20/how-old-is-the-senate/
+  - Implications for sharing
