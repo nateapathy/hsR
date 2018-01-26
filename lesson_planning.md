@@ -29,3 +29,15 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
 - Introduce the first few lines of the Senate Ages R script (installing packages, commenting, loading packages)
   - [Blog post](https://nateapathy.com/2017/12/20/how-old-is-the-senate/)
   - Implications for sharing
+  
+# Session 2
+- What is an object?
+- How do we create objects?
+- What does <- mean?
+- 
+
+
+
+
+
+
