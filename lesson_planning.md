@@ -50,7 +50,7 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
 - [StatMethods on Data Types](https://www.statmethods.net/input/datatypes.html)
   - Focus on Data Frames & Lists
 
-## Intro to Functions
+## Functions
 - Why are functions important?
 - What are functions analogous to in other stats software?
 - How will I primarily use functions?
