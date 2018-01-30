@@ -31,6 +31,8 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - Implications for sharing
   
 # Session 2: Syntax, Object Types, & Data Types
+- **Review from last time**
+  - Projects & Packages
 - What is an object?
   - What does an "object-oriented language" mean?
   - What flexibility do objects give me? Why should I care about this?
