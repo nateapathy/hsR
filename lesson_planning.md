@@ -53,6 +53,8 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - Data Cleaning/Organizing/Analysis Setup
   - Data Analysis
 - Some prep readings & resources:
+  - [Base R Statistical Functions](http://www.dummies.com/education/math/statistics/base-r-statistical-functions/)
+    - [Some examples of these functions](http://www.biostat.jhsph.edu/~hji/courses/statcomputing/StatFunc.pdf) (ignore the mathy parts of this slide deck)
   - [Useful Functions](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html)
   - [Function Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
   - [StatMethods on Base Functions](https://www.statmethods.net/management/functions.html)
