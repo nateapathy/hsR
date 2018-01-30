@@ -30,13 +30,14 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - [Blog post](https://nateapathy.com/2017/12/20/how-old-is-the-senate/)
   - Implications for sharing
   
-# Session 2: Some Syntax, Object Types, Data Types, & Functions
+# Session 2: Objects, Data Types, & Functions
 
-*Review from last time:* Projects & Packages
+*Review:* Projects & Packages
 
 ## Objects
 - What is an object?
   - What does an "object-oriented language" mean?
+  - How is that different from "syntax?"
   - What flexibility do objects give me? Why should I care about this?
 - How do we create objects?
 - What does <- mean?
