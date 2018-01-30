@@ -13,7 +13,7 @@ We are going to spend the first ~3-4 sessions talking about the code from [this 
 I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu/d/bagk). We will talk about that tomorrow, too. Don't worry about knowing anything about GitHub right now. I'll invite you all to the folder so you can access it for this particular class. It will make things much easier.
 
 
-# Session 1
+# Session 1: Getting Oriented to RStudio & R Packages
 - Installing R
 - Installing RStudio
   - The relationship between RStudio and R
@@ -30,14 +30,28 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - [Blog post](https://nateapathy.com/2017/12/20/how-old-is-the-senate/)
   - Implications for sharing
   
-# Session 2
+# Session 2: Syntax, Object Types, & Data Types
 - What is an object?
+  - What does an "object-oriented language" mean?
+  - What flexibility do objects give me? Why should I care about this?
 - How do we create objects?
 - What does <- mean?
-- 
+  - "Assignment Operator"
+- Are there different types of objects?
+  - What different parts do different types of objects have?
+- [R-Bloggers on Classes](https://www.r-bloggers.com/classes-and-objects-in-r/)
+- [StatMethods on Data Types](https://www.statmethods.net/input/datatypes.html)
+  - Focus on Data Frames & Lists
 
-
-
-
-
+## Bonus: Intro to Functions
+- Why are functions important?
+- What are functions analogous to in other stats software?
+- How will I primarily use functions?
+  - Data Creation
+  - Data Cleaning/Organizing/Analysis Setup
+  - Data Analysis
+- Some prep readings & resources:
+  - [Useful Functions](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html)
+  - [Function Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
+  - [StatMethods on Base Functions](https://www.statmethods.net/management/functions.html)
 
