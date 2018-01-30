@@ -30,22 +30,26 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - [Blog post](https://nateapathy.com/2017/12/20/how-old-is-the-senate/)
   - Implications for sharing
   
-# Session 2: Syntax, Object Types, & Data Types
-- **Review from last time**
-  - Projects & Packages
+# Session 2: Some Syntax, Object Types, Data Types, & Functions
+
+*Review from last time:* Projects & Packages
+
+## Objects
 - What is an object?
   - What does an "object-oriented language" mean?
   - What flexibility do objects give me? Why should I care about this?
 - How do we create objects?
 - What does <- mean?
   - "Assignment Operator"
+
+## Data Types
 - Are there different types of objects?
   - What different parts do different types of objects have?
 - [R-Bloggers on Classes](https://www.r-bloggers.com/classes-and-objects-in-r/)
 - [StatMethods on Data Types](https://www.statmethods.net/input/datatypes.html)
   - Focus on Data Frames & Lists
 
-## Bonus: Intro to Functions
+## Intro to Functions
 - Why are functions important?
 - What are functions analogous to in other stats software?
 - How will I primarily use functions?
