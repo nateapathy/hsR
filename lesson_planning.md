@@ -68,7 +68,9 @@ https://speakerdeck.com/jennybc/data-rectangling-1
 
 ## Administrative
 - Determine a recurring day of the week & time that reliably works for everyone
-- Updates from the [RStudio Conference](https://www.rstudio.com/conference/) that was this past weekend
-  - Many presenters share slides like [this one](https://speakerdeck.com/jennybc/data-rectangling-1) related to lists and data frames
+- Updates from the [RStudio Conference](https://www.rstudio.com/conference/)
+  - Many presenters share slides
+    - Page through [this one](https://speakerdeck.com/jennybc/data-rectangling-1) related to lists & data frames before next session
   - Search Twitter for [#rstudioconf](https://twitter.com/hashtag/#rstudioconf)
-  - Really great way to find out about new/cool packages, visualizations, things people are doing with RStudio that may apply to your own work
+    - Find one cool tweet to share with the group next week
+- Twitter [#rstats](https://twitter.com/hashtag/#rstats) and [#rstudio](https://twitter.com/hashtag/#rstudio) are great ways to find out about new/cool packages, visualizations, and things people are doing with R & RStudio that may apply to your own work
