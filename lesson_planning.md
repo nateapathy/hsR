@@ -65,3 +65,10 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - [StatMethods on Base Functions](https://www.statmethods.net/management/functions.html)
 
 https://speakerdeck.com/jennybc/data-rectangling-1
+
+## Administrative
+- Determine a recurring day of the week & time that reliably works for everyone
+- Updates from the [RStudio Conference](https://www.rstudio.com/conference/) that was this past weekend
+  - Many presenters share slides like [this one](https://speakerdeck.com/jennybc/data-rectangling-1) related to lists and data frames
+  - Search Twitter for [#rstudioconf](https://twitter.com/hashtag/#rstudioconf)
+  - Really great way to find out about new/cool packages, visualizations, things people are doing with RStudio that may apply to your own work
