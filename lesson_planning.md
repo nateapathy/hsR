@@ -64,8 +64,6 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - [Function Reference Card](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
   - [StatMethods on Base Functions](https://www.statmethods.net/management/functions.html)
 
-https://speakerdeck.com/jennybc/data-rectangling-1
-
 ## Administrative
 - Determine a recurring day of the week & time that reliably works for everyone
 - Updates from the [RStudio Conference](https://www.rstudio.com/conference/)
