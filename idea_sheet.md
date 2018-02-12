@@ -9,3 +9,7 @@
 - machine learning/statistical learning/unsupervised learning (principal components analysis, cluster analysis)
 - visualizations using ggplot2
 - web scraping, being creative re: data sources, word clouds
+
+# Assignments/Tasks
+- use issues with common prompt and different per-person tasks
+  - then each person can pull in the data the same, be equal there, but then have to execute something specific to them and then share back to the issue thread

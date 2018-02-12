@@ -22,6 +22,8 @@ sen_ages <- sen_ages[1:100,]
 as.character(sen_ages$`Current age`)
 
 # grab the age in years out of that string
+yrs <- as.numeric(substr(sen_ages$`Current age`, 21,22))
+sen_ages$yrs2 <- yrs
 sen_ages$yrs <- as.numeric(substr(sen_ages$`Current age`, 21,22))
 
 # char conversion for party
@@ -53,4 +55,4 @@ ggplot(sen_ages, aes(x=yrs)) + geom_histogram(aes(yrs), alpha=0.3, bins=10) +
        caption="Vertical lines at 65y (retirement age) and 81y (female life expectancy)",
        title = "Age Distribution and Term Length of Current Senate") +
   annotate("text", x = 50, y = 19, label = "Histogram shows overall distribution of ages in Senate") +
-  theme(legend.position=c(0.20,0.75))
+  theme_fivethirtyeight()

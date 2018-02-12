@@ -28,8 +28,8 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
   - Package implications for sharing code (don’t know what packages people have, so you need the “install…” code to ensure they can do it themselves
 - Introduce the first few lines of the Senate Ages R script (installing packages, commenting, loading packages)
   - [Blog post](https://nateapathy.com/2017/12/20/how-old-is-the-senate/)
-  - Implications for sharing
-  
+ - [Swirl](http://swirlstats.com/students.html) for learning R
+
 # Session 2: Objects, Data Types, & Functions
 
 *Review:* Projects & Packages
