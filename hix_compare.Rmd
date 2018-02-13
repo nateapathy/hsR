@@ -1,0 +1,104 @@
+---
+title: "Comparing Health Insurance Exchange Data, 2014-2018"
+author: "Nate Apathy"
+date: "2/13/2018"
+output: html_document
+---
+
+```{r}
+library(foreign) # this allows for pulling in the data from the website
+library(survey) # this is for analyzing survey data
+library(dplyr)
+library(expss)
+library(car)
+library(ggplot2)
+library(stargazer)
+library(MASS)
+library(pscl)
+library(tidyverse)
+```
+
+# What is HIX Compare?
+[HIX compare](https://www.hixcompare.org/) is the website where files for the ACA health insurance exchange marketplace plans are stored and available for download. This allows researchers to look at insurance plans across both the individual and group markets longitudinally.
+
+# What are we going to do?
+We're going to use these data sets to learn some lessons about how to bring data into R, clean it up, format it, merge it, subset it, and some other stuff. We will work only with the [individual market](https://www.hixcompare.org/individual-markets.html) plan files from 2014 through 2018. If you care about the small group market plans, those are available, too.
+
+# Getting the data
+First, we have to learn about what is in the files, which can be done with the [documentation file](https://data.hixcompare.org/hix_compare_documentation_2018_02_02.pdf).
+
+## Pulling the data into R
+Websites for the files we are using:
+- [2014 zip file](https://data.hixcompare.org/previous_versions/individual_2014_2018_02_02.zip)
+- [2015 zip file](https://data.hixcompare.org/previous_versions/individual_2015_2018_02_02.zip)
+- [2016 zip file](https://data.hixcompare.org/previous_versions/individual_2016_2018_02_02.zip)
+- [2017 zip file](https://data.hixcompare.org/previous_versions/individual_2017_2018_02_02.zip)
+- [2018 zip file](https://data.hixcompare.org/previous_versions/individual_2018_2018_02_02.zip)
+
+## Downloading and saving the data as an .Rdata file
+- You only have to do this part once, to download the raw data and then save it as an .Rdata file.
+
+- Then, you keep the .Rdata file in your project directory and do a "load" function to retrieve the data in the future (second code chunk).
+```{r, eval=FALSE}
+# there's a way to loop this and write it as a function
+# but this is easier to understand what's going on and see the process
+
+# 2014
+download.file("https://data.hixcompare.org/previous_versions/individual_2014_2018_02_02.zip", 
+              temp <- tempfile())
+unzipped_file <- unzip(temp)
+hix14 <- read_csv(unzipped_file[1])
+unlink(temp)  # Unlink to delete temporary file
+
+# 2015
+download.file("https://data.hixcompare.org/previous_versions/individual_2015_2018_02_02.zip", 
+              temp <- tempfile())
+unzipped_file <- unzip(temp)
+hix15 <- read_csv(unzipped_file[1])
+unlink(temp)  # Unlink to delete temporary file
+
+# 2016
+download.file("https://data.hixcompare.org/previous_versions/individual_2016_2018_02_02.zip", 
+              temp <- tempfile())
+unzipped_file <- unzip(temp)
+hix16 <- read_csv(unzipped_file[1])
+unlink(temp)  # Unlink to delete temporary file
+
+# 2017
+download.file("https://data.hixcompare.org/previous_versions/individual_2017_2018_02_02.zip", 
+              temp <- tempfile())
+unzipped_file <- unzip(temp)
+hix17 <- read_csv(unzipped_file[1])
+unlink(temp)  # Unlink to delete temporary file
+
+# 2018
+download.file("https://data.hixcompare.org/previous_versions/individual_2018_2018_02_02.zip", 
+              temp <- tempfile())
+unzipped_file <- unzip(temp)
+hix18 <- read_csv(unzipped_file[1])
+unlink(temp)  # Unlink to delete temporary file
+
+# clean up your environment by removing these things we don't really need
+rm("temp","theurl","unzipped_file")
+
+# Save all as .Rdata files for faster loading later
+# KEEP THESE AS YOUR RAW DATA FILES - NEVER EDIT THESE
+save(hix14, file="hix14.Rdata")
+save(hix15, file="hix15.Rdata")
+save(hix16, file="hix16.Rdata")
+save(hix17, file="hix17.Rdata")
+save(hix18, file="hix18.Rdata")
+```
+
+# Loading the Data Sets
+```{r}
+# In future loading, just use these two commands
+# the files should already be in our project directory
+load(file="hix14.Rdata")
+load(file="hix15.Rdata")
+load(file="hix16.Rdata")
+load(file="hix17.Rdata")
+load(file="hix18.Rdata")
+```
+
+Now we have both of the datasets saved, and the first step is to merge them
