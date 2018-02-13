@@ -4,8 +4,7 @@ author: "Nate Apathy"
 date: "2/13/2018"
 output: html_document
 ---
-
-```{r}
+```{r packages}
 library(foreign) # this allows for pulling in the data from the website
 library(survey) # this is for analyzing survey data
 library(dplyr)
@@ -37,9 +36,8 @@ Websites for the files we are using:
 
 ## Downloading and saving the data as an .Rdata file
 - You only have to do this part once, to download the raw data and then save it as an .Rdata file.
-
 - Then, you keep the .Rdata file in your project directory and do a "load" function to retrieve the data in the future (second code chunk).
-```{r, eval=FALSE}
+```{r downloading, eval=FALSE}
 # there's a way to loop this and write it as a function
 # but this is easier to understand what's going on and see the process
 
@@ -91,7 +89,7 @@ save(hix18, file="hix18.Rdata")
 ```
 
 # Loading the Data Sets
-```{r}
+```{r loading}
 # In future loading, just use these two commands
 # the files should already be in our project directory
 load(file="hix14.Rdata")
@@ -101,4 +99,36 @@ load(file="hix17.Rdata")
 load(file="hix18.Rdata")
 ```
 
-Now we have both of the datasets saved, and the first step is to merge them
+# Merging the data
+
+Now we have both of the datasets saved, and the first step is to merge them. But before we do that we need to check to make sure the columns all match up between the data sets. There are 503 variables in each file, but they might be in different orders, or contain different data, or be named different things. So let's check.
+
+```{r checkcols}
+# turn the column names into a character vector
+hix14cols <- colnames(hix14)
+hix15cols <- colnames(hix15)
+hix16cols <- colnames(hix16)
+hix17cols <- colnames(hix17)
+hix18cols <- colnames(hix18)
+
+# then compare them using the identical function
+# takes two objects and checks to see if they are identical
+identical(hix14cols,hix15cols)
+identical(hix15cols,hix16cols)
+identical(hix16cols,hix17cols)
+identical(hix17cols,hix18cols)
+# looks like we are good; all of these return TRUE
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
