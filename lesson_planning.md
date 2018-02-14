@@ -73,3 +73,41 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
     - Find one cool tweet to share with the group next week
     - For example, I found this very useful [syntax cheatsheet](http://www.science.smith.edu/~amcnamara/Syntax-cheatsheet.pdf)
 - Twitter [#rstats](https://twitter.com/hashtag/#rstats) and [#rstudio](https://twitter.com/hashtag/#rstudio) are great ways to find out about new/cool packages, visualizations, and things people are doing with R & RStudio that may apply to your own work
+
+# Session 3: Data Management Introduction
+
+We're going to work almost exclusively with data frames today.
+
+## Getting Data
+- HIX Compare website
+- download() functions to get data **files** from the internet
+    - not to be confused with scraping tables/html/etc.
+    - that's what we do in the sen_ages file, but more often we will be downloading or pulling in data files we already have or that are stored on a server somewhere
+- read_*() family of functions
+- storing raw data files
+
+## Merging Data
+- checking that fields/columns match
+- cbind() and rbind()
+- tidyverse intro and [R for Data Science](http://r4ds.had.co.nz/)
+- tidy data structures
+- joining logic
+
+## Cleaning Data
+- Missingness & NAs
+- Recoding variables
+- 
+
+## Subsetting Data
+- valid observations
+- fields you care about
+- 
+
+## Visualizaing Data
+- simple exploratory plots
+
+
+
+
+
+

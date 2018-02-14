@@ -104,28 +104,86 @@ load(file="hix18.Rdata")
 Now we have both of the datasets saved, and the first step is to merge them. But before we do that we need to check to make sure the columns all match up between the data sets. There are 503 variables in each file, but they might be in different orders, or contain different data, or be named different things. So let's check.
 
 ```{r checkcols}
-# turn the column names into a character vector
+# turn the column names and information about them into an object
+# use the "structure" function
 hix14cols <- colnames(hix14)
 hix15cols <- colnames(hix15)
 hix16cols <- colnames(hix16)
 hix17cols <- colnames(hix17)
 hix18cols <- colnames(hix18)
 
-# then compare them using the identical function
+# then compare them all to each other
+# need to see exactly what differs between them
 # takes two objects and checks to see if they are identical
 identical(hix14cols,hix15cols)
 identical(hix15cols,hix16cols)
 identical(hix16cols,hix17cols)
 identical(hix17cols,hix18cols)
-# looks like we are good; all of these return TRUE
+```
+
+So all the columns match; great. We just merge them all vertically, right? Just stack one on top of the other?
+
+Are you sure?
+
+Yes, we can do this because they already all have a "YEAR" variable to tell them apart. We're also super lucky here in that they are all the same amount of columns in the same order. So we can do a very simple "row bind" which stacks them on top of each other.
+
+```{r merge}
+# i'm sure there are better ways to do this with the tidyverse
+# i just don't know how yet ;-)
+hix1415 <- rbind(hix14,hix15)
+hix1617 <- rbind(hix16,hix17)
+hix1417 <- rbind(hix1415,hix1617)
+hix1418 <- rbind(hix1417,hix18)
+
+# clean up the ones you don't need anymore
+rm("hix1415","hix1617","hix1417")
+```
+
+Now that we have the datasets completely merged... let's take a look at this data.
+
+```{r dimensions}
+# what are the dimensions of this data frame?
+dim(hix1418)
+# 278,269 observations over 503 variables
+
+# how many observations is that?
+dim(hix1418)[1]*dim(hix1418)[2]
+# 139,969,307
+```
+
+So we have almost 140 million observations over 5 years of insurance plan data.
+
+This will probably need some cleanup. 
+
+# Exploring the data
+```{r}
+table(hix1418$CARRIER,hix1418$YEAR)
+
+table(hix1418$YEAR)
+
+table(hix1418$YEAR,hix1418$METAL)
+
+hist(hix1418$PREMI27)
 ```
 
 
+# Plotting
+For example, if we're interested in looking at deductibles across plan metal tier by year, we will need to make sure those three variables are formatted correctly.
 
+- Metal tier = "METAL"
+- Premium for 27-year-old = "PREMI27"" (will filter out child only plans)
+    - CHILDONLY = 0
+- Year = "YEAR"
 
+```{r formatfields}
+plottest <- hix1418[hix1418$CHILDONLY==0,c("YEAR","CARRIER","PLANID","PREMI27","METAL")]
+```
 
-
-
+# Some quick plots
+```{r plots1}
+ggplot(data=plottest, mapping = aes(x=plottest$YEAR,y=plottest$PREMI27)) + 
+  geom_point(alpha=0.4, aes(color=plottest$METAL))
+```
 
 
 
