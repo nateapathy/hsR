@@ -4,7 +4,7 @@ author: "Nate Apathy"
 date: "2/13/2018"
 output: html_document
 ---
-```{r packages}
+```{r packages, include=FALSE}
 library(foreign) # this allows for pulling in the data from the website
 library(survey) # this is for analyzing survey data
 library(dplyr)
@@ -140,7 +140,18 @@ hix1418 <- rbind(hix1417,hix18)
 
 # clean up the ones you don't need anymore
 rm("hix1415","hix1617","hix1417")
+
+# drop child-only and CSRs
+hix1418 <- hix1418[hix1418$CHILDONLY==0 & hix1418$CSR==0,]
 ```
+
+# Defining Unique Plans
+HIX Compare has some suggestions for defining "unique" plans to which we should pay heed. Also, this is a good lesson in data management - identifying your unit of analysis and making sure your data reflects that.
+
+```{r uniqueplans}
+
+```
+
 
 Now that we have the datasets completely merged... let's take a look at this data.
 
@@ -160,7 +171,8 @@ This will probably need some cleanup.
 
 # Exploring the data
 ```{r}
-table(hix1418$CARRIER,hix1418$YEAR)
+# table(hix1418$CARRIER,hix1418$YEAR)
+# this table is huge... so let's not worry about it.
 
 table(hix1418$YEAR)
 
@@ -173,7 +185,7 @@ table(hix1418$YEAR,hix1418$METAL)
 ## For Visualization
 Let's look at trends in the average silver price for 27 year olds and 50 year olds by state, then by area.
 
-```{r silvervis}
+```{r silvervis, warning=FALSE, comment=FALSE}
 # subset to silvers only
 silverdf <- hix1418[hix1418$CHILDONLY==0&hix1418$METAL=="Silver", #rows
                     c("YEAR","ST","PLANID","AREA","PREMI27","PREMI50","CSR")] # columns
@@ -217,8 +229,8 @@ plottest <- hix1418[hix1418$CHILDONLY==0,c("YEAR","CARRIER","PLANID","PREMI27","
 
 # Some quick plots
 ```{r plots1}
-ggplot(data=plottest, mapping = aes(x=plottest$YEAR,y=plottest$PREMI27)) + 
-  geom_point(alpha=0.4, aes(color=plottest$METAL))
+ggplot(data=plottest, mapping = aes(x=plottest$YEAR)) + 
+  geom_bar(aes(fill=plottest$METAL))
 ```
 
 
