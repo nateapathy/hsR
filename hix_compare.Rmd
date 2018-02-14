@@ -158,14 +158,14 @@ Now that we have the datasets completely merged... let's take a look at this dat
 ```{r dimensions}
 # what are the dimensions of this data frame?
 dim(hix1418)
-# 278,269 observations over 503 variables
+# 168,177 observations over 503 variables
 
 # how many observations is that?
 dim(hix1418)[1]*dim(hix1418)[2]
-# 139,969,307
+# 84,593,031
 ```
 
-So we have almost 140 million observations over 5 years of insurance plan data.
+So we have almost 85 million observations over 5 years of insurance plan data.
 
 This will probably need some cleanup. 
 
@@ -187,9 +187,9 @@ Let's look at trends in the average silver price for 27 year olds and 50 year ol
 
 ```{r silvervis, warning=FALSE, comment=FALSE}
 # subset to silvers only
-silverdf <- hix1418[hix1418$CHILDONLY==0&hix1418$METAL=="Silver", #rows
+silverdf <- hix1418[hix1418$METAL=="Silver", #rows
                     c("YEAR","ST","PLANID","AREA","PREMI27","PREMI50","CSR")] # columns
-# beaty of subsetting is that you can just overwrite your data frame object with any additional columns if you realize later on you need more data
+# beauty of subsetting is that you can just overwrite your data frame object with any additional columns if you realize later on you need more data
 # the vast majority of plans are silver plans because that's how benchmarking is done
 
 avgprems <- aggregate(silverdf,list(silverdf$YEAR,silverdf$ST),mean)[,c(1,2,7,8)]
