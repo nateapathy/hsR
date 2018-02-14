@@ -15,6 +15,9 @@ library(stargazer)
 library(MASS)
 library(pscl)
 library(tidyverse)
+library(geofacet)
+library(reshape2)
+library(ggthemes)
 ```
 
 # What is HIX Compare?
@@ -162,8 +165,41 @@ table(hix1418$CARRIER,hix1418$YEAR)
 table(hix1418$YEAR)
 
 table(hix1418$YEAR,hix1418$METAL)
+```
 
-hist(hix1418$PREMI27)
+# Subsetting
+## For Analysis
+
+## For Visualization
+Let's look at trends in the average silver price for 27 year olds and 50 year olds by state, then by area.
+
+```{r silvervis}
+# subset to silvers only
+silverdf <- hix1418[hix1418$CHILDONLY==0&hix1418$METAL=="Silver", #rows
+                    c("YEAR","ST","PLANID","AREA","PREMI27","PREMI50","CSR")] # columns
+# beaty of subsetting is that you can just overwrite your data frame object with any additional columns if you realize later on you need more data
+# the vast majority of plans are silver plans because that's how benchmarking is done
+
+avgprems <- aggregate(silverdf,list(silverdf$YEAR,silverdf$ST),mean)[,c(1,2,7,8)]
+colnames(avgprems) <- c("yr","state","prem27","prem50")
+# we have to convert it to a format that ggplot likes
+avgprems <- melt(avgprems,id.vars=c("yr","state"))
+avgprems$variable <- ifelse(avgprems$variable=="prem27","avg 27 year old", "avg 50 year old")
+
+ggplot(avgprems[avgprems$state=="AK",],aes(x=yr,group=variable,color=variable)) + geom_line(aes(y=value))
+# what i want is this line graph for every state comparing premiums for a 27 year old over time with that of a 50 year old over time.
+
+ggplot(avgprems, aes(variable, x=yr, y=value)) +
+  geom_line(aes(group=variable, color=variable)) +
+  theme_bw() +
+  facet_geo(~ state, grid = "us_state_grid2") +
+  scale_x_continuous(labels = function(x) paste0("'", substr(x, 3, 4))) +
+  labs(title = "Average Silver Premiums for 27-year-olds & 50-year-olds, 2014-2018",
+    caption = "Data Source: hixcompare.org",
+    x = "Year",
+    y = "Average Silver Plan Monthly Premium",
+    color="Age Group") +
+  theme_fivethirtyeight()
 ```
 
 
