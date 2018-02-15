@@ -18,6 +18,9 @@ library(tidyverse)
 library(geofacet)
 library(reshape2)
 library(ggthemes)
+library(psych)
+library(skimr)
+library(doBy)
 ```
 
 # What is HIX Compare?
@@ -38,6 +41,7 @@ Websites for the files we are using:
 - [2018 zip file](https://data.hixcompare.org/previous_versions/individual_2018_2018_02_02.zip)
 
 ## Downloading and saving the data as an .Rdata file
+### DO NOT RUN THIS IF YOU ALREADY HAVE THE .Rdata FILES
 - You only have to do this part once, to download the raw data and then save it as an .Rdata file.
 - Then, you keep the .Rdata file in your project directory and do a "load" function to retrieve the data in the future (second code chunk).
 ```{r downloading, eval=FALSE}
@@ -146,48 +150,131 @@ hix1418 <- hix1418[hix1418$CHILDONLY==0 & hix1418$CSR==0,]
 ```
 
 # Defining Unique Plans
-HIX Compare has some suggestions for defining "unique" plans to which we should pay heed. Also, this is a good lesson in data management - identifying your unit of analysis and making sure your data reflects that.
+HIX Compare has a suggested methodology for defining "unique" plans to which we should pay heed.
 
-```{r uniqueplans}
+Also, this is a good lesson in data management - identifying your unit of analysis and making sure your data reflects that.
 
+```{r uniqueplans, results="hide"}
+# we need to find the records for which the following fields are duplicated
+# year st carrier metal plantype planmarket networkid 
+# ab_copayinn_tiers *thru* rh_coinsoutofneta
+# sp_copayinn_tiers *thru* tehboutofnetfamilymoopa
+# this leaves out skilled nursing columns (there are 14 of them) because they are an EHB that can be changed by a rider
+# we're going to use the UNIQUE field once we compress the data to hold our unique ID for each plan that remains
+
+# check for duplications T/F
+duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)])
+# returns a logical vector that matches with the rows that are duplicated by the hixcompare rules
+
+colnames(hix1418[1:3,c(2,5,7,9,10,17,19,20:383,398:503)])
+# yep, those fields are correct
+
+# now we can just use the duplicated() function and its arguments as our subset for rows
+
+un_hix1418 <- hix1418[duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)]),]
+# this cuts us down to 146,941 unique plans, down from 168,177
+# so there are 21,236 duplicate plans by the hixcompare definition
+
+# now we can generate our unique identifier in the UNIQUE field
+un_hix1418$UNIQUE <- 1:length(un_hix1418$UNIQUE)
 ```
 
+# Understanding the Data
+## READ THE DATA DICTIONARY
+Find out what is in the data dictionary so that you understand it before we go exploring. The data dictionary is in the github repository for reference and can be found on the hixcompare.org website for the individual market files.
+- need to know if your project requires individual or small group plan data
+
+
+```{r datadict, results="hide"}
+colnames(un_hix1418)
+# Common fields we will always want to keep: 1-19 and 440-503
+# ER: cols 90-103 (14 columns)
+```
 
 Now that we have the datasets completely merged... let's take a look at this data.
 
 ```{r dimensions}
 # what are the dimensions of this data frame?
-dim(hix1418)
-# 168,177 observations over 503 variables
+dim(un_hix1418)
+# 146,941 observations over 503 variables
 
-# how many observations is that?
-dim(hix1418)[1]*dim(hix1418)[2]
-# 84,593,031
+# how many cells/potential data points is that?
+dim(un_hix1418)[1]*dim(un_hix1418)[2]
+# 73,911,323
 ```
 
-So we have almost 85 million observations over 5 years of insurance plan data.
+So we have almost 74 million observations over 5 years of insurance plan data.
 
 This will probably need some cleanup. 
 
 # Exploring the data
 ```{r}
-# table(hix1418$CARRIER,hix1418$YEAR)
+# table(un_hix1418$CARRIER,un_hix1418$YEAR)
 # this table is huge... so let's not worry about it.
 
-table(hix1418$YEAR)
+table(un_hix1418$YEAR)
 
-table(hix1418$YEAR,hix1418$METAL)
+table(un_hix1418$YEAR,un_hix1418$METAL)
 ```
 
 # Subsetting
 ## For Analysis
+- within indiana, for things that we are bad at (pre-natal care), is there meaningful variation within tiers
+    - looking at variation within plans & services; is there variation w/in areas and tiers?
+    - let's start by looking just at 2018 in indiana, within silver plans
+
+```{r subset_analysis, warning=FALSE}
+in18s <- un_hix1418[un_hix1418$ST=="IN" & un_hix1418$METAL=="Silver" & un_hix1418$YEAR=="2018",]
+# only 270 silver plans in indiana during this time
+# but that's still a lot!
+# let's see how many per area
+table(in18s$ST,in18s$AREA)
+
+# and let's now just look at the plans in IN10 (20 of them) and their ER cost sharing
+in18s10er <- in18s[in18s$AREA=="IN10",c(1:19, # pricing and metadata
+                                        90:103, # ER-specific fields
+                                        440:503)] # value fields
+
+# area 10 and pre/post natal care fields
+in18s10pn <- in18s[in18s$AREA=="IN10",c(1:19, # pricing and metadata
+                                        328:341, # pre/postnatal specific fields
+                                        440:503)] # value fields
+
+# all of indiana pre/post natal
+in18spn <- in18s[,c(1:19, # pricing and metadata
+                    328:341, # pre/postnatal specific fields
+                    440:503)] # value fields
+
+skim(in18spn)
+
+ggplot(in18spn,aes(x=in18spn$TEHBInnTier1FamilyMOOPA,y=in18spn$TEHBDedInnTier1FamilyA)) +
+  geom_point(alpha=0.3,aes(color=in18spn$CARRIER, size=in18spn$PREMC2C30))
+
+ggplot(in18s,aes(x=PREMC2C30,y=TEHBDedInnTier1FamilyA)) +
+  geom_point(alpha=0.3,aes(color=CARRIER, size=PREMC2C30)) +
+  labs(x="Premium for 2 individuals (age 30) and 2 children (aged 0-14)",
+       y="Integrated In-Network Deductible - Family")
+
+in18 <- un_hix1418[un_hix1418$ST=="IN" & un_hix1418$YEAR=="2018",]
+
+skim(in18)
+
+unique(in18$CARRIER)
+
+ggplot(in18,aes(x=PREMC2C30,y=TEHBInnTier1FamilyMOOPA)) +
+  geom_point(alpha=0.3,aes(color=METAL,size=TEHBDedInnTier1FamilyA)) +
+  labs(x="Premium for 2 individuals (age 30) and 2 children (aged 0-14)",
+       y="Integrated In-Network Max OOP - Family") +
+  facet_wrap(~CARRIER)
+```
+
 
 ## For Visualization
 Let's look at trends in the average silver price for 27 year olds and 50 year olds by state, then by area.
 
 ```{r silvervis, warning=FALSE, comment=FALSE}
 # subset to silvers only
-silverdf <- hix1418[hix1418$METAL=="Silver", #rows
+silverdf <- un_hix1418[un_hix1418$METAL=="Silver", #rows
                     c("YEAR","ST","PLANID","AREA","PREMI27","PREMI50","CSR")] # columns
 # beauty of subsetting is that you can just overwrite your data frame object with any additional columns if you realize later on you need more data
 # the vast majority of plans are silver plans because that's how benchmarking is done
@@ -224,7 +311,7 @@ For example, if we're interested in looking at deductibles across plan metal tie
 - Year = "YEAR"
 
 ```{r formatfields}
-plottest <- hix1418[hix1418$CHILDONLY==0,c("YEAR","CARRIER","PLANID","PREMI27","METAL")]
+plottest <- un_hix1418[un_hix1418$CHILDONLY==0,c("YEAR","CARRIER","PLANID","PREMI27","METAL")]
 ```
 
 # Some quick plots
