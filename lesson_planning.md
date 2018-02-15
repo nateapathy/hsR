@@ -90,24 +90,26 @@ We're going to work almost exclusively with data frames today.
 - checking that fields/columns match
 - cbind() and rbind()
 - tidyverse intro and [R for Data Science](http://r4ds.had.co.nz/)
-- tidy data structures
-- joining logic
+- joining steps for HIX
 
 ## Cleaning Data
 - Missingness & NAs
-- Recoding variables
-- 
+- **won't cover this in detail today**
 
 ## Subsetting Data
 - valid observations
 - fields you care about
-- 
 
 ## Visualizaing Data
 - simple exploratory plots
 
-
-
-
+## Your turn!
+- download <file>.R from the github site
+    - this is basically what we've just reviewed
+- download <datafiles>.zip from the github site
+- unzip the zip and place all five files in your project folder
+- then they should show up in RStudio
+- we will walk through the first part (what is already written)
+- then you each have a commented out section that is there for you to accomplish the task listed
 
 
