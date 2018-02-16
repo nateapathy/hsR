@@ -104,9 +104,9 @@ We're going to work almost exclusively with data frames today.
 - simple exploratory plots
 
 ## Your turn!
-- download <file>.R from the github site
+- download [session3.R](https://github.iu.edu/natea/hsR/blob/master/session3.R) from the github site
     - this is basically what we've just reviewed
-- download <datafiles>.zip from the github site
+- download [hix_rdata_files.zip](https://github.iu.edu/natea/hsR/raw/master/hix_rdata_files.zip) from the github site
 - unzip the zip and place all five files in your project folder
 - then they should show up in RStudio
 - we will walk through the first part (what is already written)
