@@ -21,6 +21,9 @@ library(ggthemes)
 library(psych)
 library(skimr)
 library(doBy)
+library(choroplethr)
+library(choroplethrMaps)
+library(datasets)
 ```
 
 # What is HIX Compare?
@@ -319,6 +322,21 @@ ggplot(data=plottest, mapping = aes(x=plottest$YEAR)) +
 ```
 
 
+# Data Aggregation and Summaries
+We may want to develop some data like in the map graphic that summarizes data by state.
+For example, the count of unique providers in each state
+
+```{r carriers}
+st_carriers <- data.frame(un_hix1418 %>%
+                            filter(YEAR==2017) %>%
+                            group_by(ST) %>%
+                            summarise(count=n_distinct(CARRIER)))
+colnames(st_carriers) <- c("region","value")
+states_ref <- data.frame(name=datasets::state.name,region=datasets::state.abb)
+st_carriers <- st_carriers %>% inner_join(states_ref,by="region")
+st_carriers$region <- tolower(st_carriers$name)
+state_choropleth(st_carriers, num_colors = as.integer(length(unique(st_carriers$value))/2), title = "Unique Plan Carriers per State, 2017")
+```
 
 
 
