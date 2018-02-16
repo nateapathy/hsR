@@ -37,6 +37,8 @@ Is plan generosity OR variation in plan generosity correlated with need?
   - If there is high need and variation
     - Insurers are offering clearly dominated plans given the need
 
+Insurers could be more or less generous in terms of actuarial value given the need in a certain county for specific service types. i.e. are they less generous (lower AV) where they anticipate higher need?
+
 
 
 # Updates (date)
