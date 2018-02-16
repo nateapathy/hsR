@@ -1,0 +1,22 @@
+---
+title: "AcademyHealth Late Breaking Abstract Ideas"
+author: "Nate Apathy"
+date: "2/16/2018"
+output: html_document
+---
+
+```{r packages, include=FALSE}
+
+```
+
+# Analysis ideas for AH LBA
+
+*Due March 30*
+
+Looking at plan variation in generosity within an area in a state for certain services that are high need
+  - Using CountyHealthRankings to find areas with high prenatal care needs, for example
+      - http://www.countyhealthrankings.org/
+  - Methodology for assessing actuarial value of the plan: https://www.bls.gov/osmr/pdf/ec150010.pdf
+  - website version: https://www.bls.gov/opub/mlr/2015/article/measuring-the-generosity-of-employer-sponsored-health-plans.htm
+
+

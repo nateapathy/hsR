@@ -322,4 +322,3 @@ ggplot(data=plottest, mapping = aes(x=plottest$YEAR)) +
 
 
 
-
