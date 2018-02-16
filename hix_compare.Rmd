@@ -156,24 +156,23 @@ Also, this is a good lesson in data management - identifying your unit of analys
 
 ```{r uniqueplans, results="hide"}
 # we need to find the records for which the following fields are duplicated
-# year st carrier metal plantype planmarket networkid 
+# year st carrier metal plantype planmarket networkid
+# we are going to add area to this set, because we want to analyze at the area level (col #6)
 # ab_copayinn_tiers *thru* rh_coinsoutofneta
 # sp_copayinn_tiers *thru* tehboutofnetfamilymoopa
 # this leaves out skilled nursing columns (there are 14 of them) because they are an EHB that can be changed by a rider
 # we're going to use the UNIQUE field once we compress the data to hold our unique ID for each plan that remains
-
 # check for duplications T/F
-duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)])
+duplicated(hix1418[,c(2,5:7,9,10,17,19,20:383,398:503)])
 # returns a logical vector that matches with the rows that are duplicated by the hixcompare rules
 
-colnames(hix1418[1:3,c(2,5,7,9,10,17,19,20:383,398:503)])
+colnames(hix1418[1:3,c(2,5:7,9,10,17,19,20:383,398:503)])
 # yep, those fields are correct
 
 # now we can just use the duplicated() function and its arguments as our subset for rows
 
-un_hix1418 <- hix1418[!duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)]),]
-# this cuts us down to 21,236 unique plans, down from 168,177
-# so there are 21,236 duplicate plans by the hixcompare definition
+un_hix1418 <- hix1418[!duplicated(hix1418[,c(2,5:7,9,10,17,19,20:383,398:503)]),]
+# this cuts us down to 139,516 unique plans, down from 168,177
 
 # now we can generate our unique identifier in the UNIQUE field
 un_hix1418$UNIQUE <- 1:length(un_hix1418$UNIQUE)
@@ -196,14 +195,14 @@ Now that we have the datasets completely merged... let's take a look at this dat
 ```{r dimensions}
 # what are the dimensions of this data frame?
 dim(un_hix1418)
-# 21,236 observations over 503 variables
+# 139,516 observations over 503 variables
 
 # how many cells/potential data points is that?
 dim(un_hix1418)[1]*dim(un_hix1418)[2]
-# 10,681,708
+# 70,176,548
 ```
 
-So we have almost 74 million observations over 5 years of insurance plan data.
+So we have ~70 million observations over 5 years of insurance plan data.
 
 This will probably need some cleanup. 
 
@@ -264,7 +263,7 @@ ggplot(in18,aes(x=PREMC2C30,y=TEHBInnTier1FamilyMOOPA)) +
   geom_point(alpha=0.3,aes(color=METAL,size=TEHBDedInnTier1FamilyA)) +
   labs(x="Premium for 2 individuals (age 30) and 2 children (aged 0-14)",
        y="Integrated In-Network Max OOP - Family") +
-  facet_wrap(~CARRIER)
+  facet_wrap(~AREA)
 ```
 
 

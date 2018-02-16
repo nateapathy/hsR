@@ -61,12 +61,11 @@ hix1418 <- hix1418[hix1418$CHILDONLY==0 & hix1418$CSR==0,]
 
 # we can also check to make sure the fields we kept are correct
 # not going to run this either; huge output
-# colnames(hix1418[1:3,c(2,5,7,9,10,17,19,20:383,398:503)])
+# colnames(hix1418[1:3,c(2,5:7,9,10,17,19,20:383,398:503)])
 
 # now we can just use the duplicated() function and its arguments as our subset for rows
-un_hix1418 <- hix1418[!duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)]),]
-# this cuts us down to 21,236 unique plans, down from 168,177
-# so there are 146,941 duplicate plans by the hixcompare definition
+un_hix1418 <- hix1418[!duplicated(hix1418[,c(2,5:7,9,10,17,19,20:383,398:503)]),]
+# this cuts us down to 139,516 unique plans, down from 168,177
 
 # now we can generate our unique identifier in the UNIQUE field
 un_hix1418$UNIQUE <- 1:length(un_hix1418$UNIQUE)
