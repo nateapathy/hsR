@@ -65,8 +65,8 @@ hix1418 <- hix1418[hix1418$CHILDONLY==0 & hix1418$CSR==0,]
 
 # now we can just use the duplicated() function and its arguments as our subset for rows
 un_hix1418 <- hix1418[!duplicated(hix1418[,c(2,5,7,9,10,17,19,20:383,398:503)]),]
-# this cuts us down to 146,941 unique plans, down from 168,177
-# so there are 21,236 duplicate plans by the hixcompare definition
+# this cuts us down to 21,236 unique plans, down from 168,177
+# so there are 146,941 duplicate plans by the hixcompare definition
 
 # now we can generate our unique identifier in the UNIQUE field
 un_hix1418$UNIQUE <- 1:length(un_hix1418$UNIQUE)
