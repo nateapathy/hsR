@@ -234,7 +234,6 @@ table(in18s$ST,in18s$AREA)
 in18s10er <- in18s[in18s$AREA=="IN10",c(1:19, # pricing and metadata
                                         90:103, # ER-specific fields
                                         440:503)] # value fields
-
 # area 10 and pre/post natal care fields
 in18s10pn <- in18s[in18s$AREA=="IN10",c(1:19, # pricing and metadata
                                         328:341, # pre/postnatal specific fields
