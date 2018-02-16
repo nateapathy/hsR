@@ -1,7 +1,7 @@
 ---
 title: "AcademyHealth Late Breaking Abstract Ideas"
 author: "Nate Apathy"
-date: "2/16/2018"
+date: "Created 2/16/2018"
 output: html_document
 ---
 
@@ -11,12 +11,32 @@ output: html_document
 
 # Analysis ideas for AH LBA
 
-*Due March 30*
+**Due March 30**
 
 Looking at plan variation in generosity within an area in a state for certain services that are high need
-  - Using CountyHealthRankings to find areas with high prenatal care needs, for example
-      - http://www.countyhealthrankings.org/
-  - Methodology for assessing actuarial value of the plan: https://www.bls.gov/osmr/pdf/ec150010.pdf
-  - website version: https://www.bls.gov/opub/mlr/2015/article/measuring-the-generosity-of-employer-sponsored-health-plans.htm
+  
+  - Using [CountyHealthRankings](http://www.countyhealthrankings.org/) to find areas with high prenatal care needs, for example
+    - [2017 Data](http://www.countyhealthrankings.org/sites/default/files/2017CHR_CSV_Analytic_Data.csv)
+    - [2016 Data](http://www.countyhealthrankings.org/sites/default/files/2016CHR_CSV_Analytic_Data_v2.csv)
+    - [2015 Data](http://www.countyhealthrankings.org/sites/default/files/2015%20CHR%20Analytic%20Data.csv)
+    - [2014 Data](http://www.countyhealthrankings.org/sites/default/files/2014%20CHR%20analytic%20data.csv)
+  - [BLS methodology for assessing actuarial value of the plan](https://www.bls.gov/osmr/pdf/ec150010.pdf)
+
+Is plan generosity OR variation in plan generosity correlated with need?
+
+**Findings are relevant in all directions**
+  
+  - If there is low need and no variation
+    - with low value plans, OK, insurers match the need
+    - with high vaue plans, not OK, insurers don't match the need
+  - If there is high need and no variation
+    - among low value plans; not OK, insurers don't match the need and specifically underprovide
+    - with high value plans; OK, insurers match the need
+  - If there is low need and variation
+    - Insurers are offering clearly dominated plans given the need
+  - If there is high need and variation
+    - Insurers are offering clearly dominated plans given the need
 
 
+
+# Updates (date)
