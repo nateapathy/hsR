@@ -41,4 +41,37 @@ Insurers could be more or less generous in terms of actuarial value given the ne
 
 
 
-# Updates (date)
+# Updates (Feb 19)
+
+## ARM LBA: HIX Compare by area/county (due March 30) - potentially a paper? w/ Kosali?
+
+- Bring in Val too, to ID good public health data sets
+- Need to lay out what the data set needs to look like
+- County Health Rankings will be more granular than HIX compare, but that’s OK
+    - Each area should be a composite of the rankings of the counties that make it up?
+    - Or should the analysis be done at the county level? With the actuarial value of the plan applied to all counties? That seems more reliable, since people in those counties could all access the same plans with the same actuarial value. But since insurers offer plans across counties, this would have some discordance problems. How could an insurer, for example, balance out the 3-5 counties that a single rating area covered? Would need to see the variance within the rating area counties on the health ranking measure; the rating areas are not homogenous in their health rankings scores
+      - Example: Area 10 in Indiana CHR variation/comparison
+      - May want to consult Kosali on this since she’s done some work with the health ins marketplaces
+    - Problem: insurers make decisions at the rating area level, but we have needs at the county level
+    - Could aggregate to the rating area level for those areas defined by counties
+    - Can we defensibly average CHR data by rating area?
+    - Only rating areas defined with counties rather than 3 digit ZIP
+- Calculating the actuarial value of the plan (by benefit type?)
+    - How to aggregate? Averages by rating area? By benefit type?
+    - What other constraints are insurance providers under? How do they set these plan benefits?
+- How are rating areas determined? [link](https://www.cms.gov/cciio/programs-and-initiatives/health-insurance-market-reforms/state-gra.html)
+- Control for other economic factors that impact actuarial value of a plan
+
+## Google Scholar Quick & Dirty:
+
+- Gabel, J. R., Lore, R., McDevitt, R. D., Pickreign, J. D., Whitmore, H., Slover, M., & Levy-Forsythe, E. (2012). More than half of individual health plans offer coverage that falls short of what can be sold through exchanges as of 2014. Health Affairs, 31(6), 1339-1348.
+- Grace, A. M., Noonan, K. G., Cheng, T. L., Miller, D., Verga, B., Rubin, D., & Rosenbaum, S. (2014). The ACA’s pediatric essential health benefit has resulted in a state-by-state patchwork of coverage with exclusions. Health Affairs, 33(12), 2136-2143.
+- Karaca-Mandic, P., Abraham, J. M., Simon, K., & Feldman, R. (2013). Going into the Affordable Care Act: Measuring the Size, Structure and Performance of the Individual and Small Group Markets for Health Insurance (No. w19719). National Bureau of Economic Research.
+
+## Other ideas
+- Once this is collated, all sorts of CHR data could be relevant here
+- Do insurers offer more plans where uninsured rates are higher?
+- Do insurers offer cheaper plans where uninsured rates are higher?
+- Do insurers offer lower actuarial value plans where uninsured rates are higher?
+- What about unemployment?
+
