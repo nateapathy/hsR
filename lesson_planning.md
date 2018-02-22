@@ -118,6 +118,9 @@ We're going to work almost exclusively with data frames today.
     - For example, I found this very useful [syntax cheatsheet](http://www.science.smith.edu/~amcnamara/Syntax-cheatsheet.pdf)
 - Twitter [#rstats](https://twitter.com/hashtag/#rstats) and [#rstudio](https://twitter.com/hashtag/#rstudio) are great ways to find out about new/cool packages, visualizations, and things people are doing with R & RStudio that may apply to your own work
 
+## Review last week's activities
+- How did you go about answering the questions?
+
 ## Exploring Cleaning Data
 - Missingness & NAs
 - skimr function in more depth
@@ -132,3 +135,4 @@ We're going to work almost exclusively with data frames today.
 
 ## Visualizaing Data
 - simple exploratory plots
+- 

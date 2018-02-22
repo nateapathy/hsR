@@ -72,6 +72,9 @@ un_hix1418$UNIQUE <- 1:length(un_hix1418$UNIQUE)
 # notice we still have 503 variables. UNIQUE was already a field (the first one)
 # so we just overwrote whatever was there (they were all NAs, but this is worth checking)
 
+# save the file for faster loading later
+# save(un_hix1418, file="un_hix1418.Rdata")
+
 # Note: in 10 lines of code, we have:
 ####  1. loaded 5 data sets
 ####  2. merged them all into a longitudinal data set

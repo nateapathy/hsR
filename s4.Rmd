@@ -7,4 +7,79 @@ output:
     df_print: paged
 subtitle: Data Management II & Visualization for Exploratory Data Analysis
 ---
+```{r packages, include=FALSE}
+# install.packages()
+library(VIM)
+library(skimr)
+library(tidyverse)
+```
+
+# Review of Last Week's Activities
+
+Each of you had a section to do something with the un_hix1418 dataset we created
+
+- Some things that may come in handy:
+
+    - A few of these will require the data dictionary as a reference
+    - Keep in mind that subsetting by column number is much easier when fields have unweildy names and there are lots of them
+    - You'll only need the first 19 columns for all the steps below
+    - colnames() can help identify the number of the column you are trying to find
+    - the syntax for subsetting is dataframename[rows,columns]
+    - table() can help with cross-tabs/counts of variable pairs
+    - length() counts how many elements are in a given object
+    - skim(dataframename) can be very useful. try it! no need to create an object, just look at it in the Console output
+    - you can subset within other functions without changing the object you are subsetting (if you don't overwrite it)
+    - example: length(dataframename[dataframename$column1==1 & dataframename$column2==4,])
+    - will count the number of observations that match your criteria (like filtering in excel)
+
+## Subsetting & Exploring Data
+
+```{r loaddfs}
+load(file="un_hix1418.Rdata")
+```
+
+1. Subset the data frame down to the 2016 plans from two states of your choice (create a new data frame object)
+
+```{r one}
+alnm16 <- un_hix1418[(un_hix1418$ST=="AL" | un_hix1418$ST=="NM") & un_hix1418$YEAR=="2016",]
+```
+
+2. How many plans are in each of the metallic tiers for each state?
+
+```{r}
+table(alnm16$METAL,alnm16$ST)
+```
+
+3. Which area (from the state first in alphabetical order) had the most silver plan options in 2016?
+
+```{r}
+table(alnm16[alnm16$ST=="AL" & alnm16$METAL=="Silver",]$AREA,alnm16[alnm16$ST=="AL" & alnm16$METAL=="Silver",]$ST)
+```
+
+4. Which state had the higher average premium for a 50-year-old purchasing a silver plan? What was that amount?
+
+```{r}
+mean(alnm16[alnm16$ST=="AL" & alnm16$METAL=="Silver",]$PREMI50)
+mean(alnm16[alnm16$ST=="NM" & alnm16$METAL=="Silver",]$PREMI50)
+```
+
+5. What was the most common plan type in area 3 of the second state?
+
+```{r}
+table(alnm16[alnm16$ST=="NM",]$PLANTYPE,alnm16[alnm16$ST=="NM",]$AREA)
+# type 2, which is HMO (from data dictionary)
+```
+
+6. Among HMO plans, what is the average premium for a 27-year-old?
+
+```{r}
+mean(alnm16[alnm16$PLANTYPE=="2",]$PREMI27)
+```
+
+# Visualizing Data Missingness
+```{r}
+hixsamp <- un_hix1418[1:500,1:19]
+aggr(hixsamp, prop = F, numbers=TRUE)
+skim(hixsamp)
+```
 
