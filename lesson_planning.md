@@ -135,4 +135,6 @@ We're going to work almost exclusively with data frames today.
 
 ## Visualizaing Data
 - simple exploratory plots
-- 
+- summarizing a dataset for plots
+- ggplot() grammar
+- adding elements to a single graph

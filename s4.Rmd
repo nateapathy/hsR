@@ -76,10 +76,31 @@ table(alnm16[alnm16$ST=="NM",]$PLANTYPE,alnm16[alnm16$ST=="NM",]$AREA)
 mean(alnm16[alnm16$PLANTYPE=="2",]$PREMI27)
 ```
 
+
+
 # Visualizing Data Missingness
 ```{r}
-hixsamp <- un_hix1418[1:500,1:19]
-aggr(hixsamp, prop = F, numbers=TRUE)
+table(un_hix1418$ST,un_hix1418$YEAR)
+hixsamp <- filter(un_hix1418, YEAR %in% c("2016","2017") & ST %in% c("CA","MA")) %>%
+  select(1:19,90:103)
+colnames(hixsamp)[20:33]
+aggr(hixsamp, prop = T, numbers=TRUE)
 skim(hixsamp)
 ```
 
+# Visualization of Data Summaries with the Tidyverse
+```{r}
+avg_prem_example <- un_hix1418 %>% group_by(YEAR, ST, METAL) %>% 
+  summarize(avg_27_prem = mean(PREMI27),
+            avg_50_prem = mean(PREMI50),
+            avg_fam4_prem = mean(PREMC2C30)) %>%
+  mutate(avg_prem = (avg_27_prem + avg_50_prem + avg_fam4_prem)/3)
+
+avg_prem_example
+
+ggplot(avg_prem_example, aes(x=YEAR)) + geom_bar(aes(fill=METAL))
+
+ggplot(avg_prem_example, aes(x=as.factor(YEAR))) + 
+  geom_boxplot(aes(alpha=0.2,y=avg_27_prem)) +
+  facet_wrap(~METAL)
+```
