@@ -92,16 +92,10 @@ We're going to work almost exclusively with data frames today.
 - tidyverse intro and [R for Data Science](http://r4ds.had.co.nz/)
 - joining steps for HIX
 
-## Cleaning Data
-- Missingness & NAs
-- **won't cover this in detail today**
-
 ## Subsetting Data
-- valid observations
-- fields you care about
-
-## Visualizaing Data
-- simple exploratory plots
+- subset to find out things about your data set
+- answer questions about subpopulations
+- understand what data you want in your study
 
 ## Your turn!
 - download [session3.R](https://github.iu.edu/natea/hsR/blob/master/session3.R) from the github site
@@ -112,4 +106,29 @@ We're going to work almost exclusively with data frames today.
 - we will walk through the first part (what is already written)
 - then you each have a commented out section that is there for you to accomplish the task listed
 
+# Session 4: Data Management II & Intro to Visualization for EDA
 
+## Administrative
+- Determine a recurring day of the week & time that reliably works for everyone
+- Updates from the [RStudio Conference](https://www.rstudio.com/conference/)
+  - Many presenters share slides
+    - Page through [this one](https://speakerdeck.com/jennybc/data-rectangling-1) related to lists & data frames before next session
+  - Search Twitter for [#rstudioconf](https://twitter.com/hashtag/#rstudioconf)
+    - Find one cool tweet to share with the group next week
+    - For example, I found this very useful [syntax cheatsheet](http://www.science.smith.edu/~amcnamara/Syntax-cheatsheet.pdf)
+- Twitter [#rstats](https://twitter.com/hashtag/#rstats) and [#rstudio](https://twitter.com/hashtag/#rstudio) are great ways to find out about new/cool packages, visualizations, and things people are doing with R & RStudio that may apply to your own work
+
+## Exploring Cleaning Data
+- Missingness & NAs
+- skimr function in more depth
+- VIM functions for visualizing missing data
+
+## Subsetting Data
+- we did this a little bit last week
+- valid observations
+- fields you care about
+- understanding what qualifies for your study, what doesn't
+- dealing with duplicates
+
+## Visualizaing Data
+- simple exploratory plots

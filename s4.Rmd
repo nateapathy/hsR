@@ -1,0 +1,10 @@
+---
+title: "hsR Session 4"
+author: "Nate Apathy"
+date: "2.23.2018"
+output:
+  html_document:
+    df_print: paged
+subtitle: Data Management II & Visualization for Exploratory Data Analysis
+---
+
