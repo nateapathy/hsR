@@ -104,3 +104,20 @@ ggplot(avg_prem_example, aes(x=as.factor(YEAR))) +
   geom_boxplot(aes(alpha=0.2,y=avg_27_prem)) +
   facet_wrap(~METAL)
 ```
+
+# Class Exercise: Summarizing Data by State and Year
+
+Question: On average, how many plans of each metallic tier were offered in each area of each state over the years?
+
+```{r plancounts, include=FALSE}
+plancounts <- un_hix1418 %>% group_by(AREA,ST,YEAR,METAL) %>% 
+  summarize(plansinstate = n(), avg27prem = mean(PREMI27)) %>%
+  group_by(YEAR,ST,METAL) %>%
+  summarize(areaplans = mean(plansinstate), avg27prem = mean(avg27prem))
+plancounts[plancounts$ST=="AK",]
+
+ggplot(plancounts, aes(x=YEAR,y=areaplans)) + geom_line(aes(color=METAL)) + facet_wrap(~ST)
+
+ggplot(plancounts,aes(x=areaplans,y=avg27prem)) + geom_point(aes(color=METAL))
+```
+
