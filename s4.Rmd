@@ -12,6 +12,8 @@ subtitle: Data Management II & Visualization for Exploratory Data Analysis
 library(VIM)
 library(skimr)
 library(tidyverse)
+library(knitr)
+library(RColorBrewer)
 ```
 
 # Review of Last Week's Activities
@@ -42,6 +44,8 @@ load(file="un_hix1418.Rdata")
 
 ```{r one}
 alnm16 <- un_hix1418[(un_hix1418$ST=="AL" | un_hix1418$ST=="NM") & un_hix1418$YEAR=="2016",]
+
+alnm16d <- un_hix1418 %>% filter(ST %in% c("AL","NM") & YEAR==2016)
 ```
 
 2. How many plans are in each of the metallic tiers for each state?
@@ -86,6 +90,8 @@ hixsamp <- filter(un_hix1418, YEAR %in% c("2016","2017") & ST %in% c("CA","MA"))
 colnames(hixsamp)[20:33]
 aggr(hixsamp, prop = T, numbers=TRUE)
 skim(hixsamp)
+unique(hixsamp$CARRIER)
+table(hixsamp$ER_CoinsInnTier1A,useNA = "always")
 ```
 
 # Visualization of Data Summaries with the Tidyverse
@@ -98,7 +104,10 @@ avg_prem_example <- un_hix1418 %>% group_by(YEAR, ST, METAL) %>%
 
 avg_prem_example
 
-ggplot(avg_prem_example, aes(x=YEAR)) + geom_bar(aes(fill=METAL))
+
+ggplot(avg_prem_example, aes(x=as.factor(YEAR))) + geom_bar(aes(fill=METAL))
+
+ggplot(avg_prem_example, aes(x=as.factor(YEAR),y=avg_prem)) + geom_boxplot(aes(fill=METAL))
 
 ggplot(avg_prem_example, aes(x=as.factor(YEAR))) + 
   geom_boxplot(aes(alpha=0.2,y=avg_27_prem)) +
@@ -114,7 +123,6 @@ plancounts <- un_hix1418 %>% group_by(AREA,ST,YEAR,METAL) %>%
   summarize(plansinstate = n(), avg27prem = mean(PREMI27)) %>%
   group_by(YEAR,ST,METAL) %>%
   summarize(areaplans = mean(plansinstate), avg27prem = mean(avg27prem))
-plancounts[plancounts$ST=="AK",]
 
 ggplot(plancounts, aes(x=YEAR,y=areaplans)) + geom_line(aes(color=METAL)) + facet_wrap(~ST)
 

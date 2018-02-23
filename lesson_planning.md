@@ -66,6 +66,7 @@ I'll also be storing things for these sessions out on [GitHub](https://kb.iu.edu
 
 ## Administrative
 - Determine a recurring day of the week & time that reliably works for everyone
+  - Fridays 1:30-3p seem to be the best time for everyone
 - Updates from the [RStudio Conference](https://www.rstudio.com/conference/)
   - Many presenters share slides
     - Page through [this one](https://speakerdeck.com/jennybc/data-rectangling-1) related to lists & data frames before next session
