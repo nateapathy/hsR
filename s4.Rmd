@@ -14,6 +14,7 @@ library(skimr)
 library(tidyverse)
 library(knitr)
 library(RColorBrewer)
+library(ggthemes)
 ```
 
 # Review of Last Week's Activities
@@ -96,18 +97,21 @@ table(hixsamp$ER_CoinsInnTier1A,useNA = "always")
 
 # Visualization of Data Summaries with the Tidyverse
 ```{r}
-avg_prem_example <- un_hix1418 %>% group_by(YEAR, ST, METAL) %>% 
+avg_prem_example <- un_hix1418 %>% group_by(YEAR, ST, METAL) %>%
   summarize(avg_27_prem = mean(PREMI27),
             avg_50_prem = mean(PREMI50),
             avg_fam4_prem = mean(PREMC2C30)) %>%
-  mutate(avg_prem = (avg_27_prem + avg_50_prem + avg_fam4_prem)/3)
+  mutate(avg_prem = (avg_27_prem + avg_50_prem + avg_fam4_prem)/3,
+         METAL = factor(METAL,levels = c("Catastrophic","Bronze","Silver","Gold","Platinum")))
 
 avg_prem_example
 
 
 ggplot(avg_prem_example, aes(x=as.factor(YEAR))) + geom_bar(aes(fill=METAL))
 
-ggplot(avg_prem_example, aes(x=as.factor(YEAR),y=avg_prem)) + geom_boxplot(aes(fill=METAL))
+ggplot(avg_prem_example, aes(x=as.factor(YEAR),y=avg_prem)) + geom_boxplot(aes(fill=METAL)) +
+  labs(x="Year", y="Average Premium (state avg), 27-year old",
+       title="Average Premiums by Metal Tier Over Time")
 
 ggplot(avg_prem_example, aes(x=as.factor(YEAR))) + 
   geom_boxplot(aes(alpha=0.2,y=avg_27_prem)) +
