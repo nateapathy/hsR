@@ -74,4 +74,7 @@ Insurers could be more or less generous in terms of actuarial value given the ne
 - Do insurers offer cheaper plans where uninsured rates are higher?
 - Do insurers offer lower actuarial value plans where uninsured rates are higher?
 - What about unemployment?
+- Could we look at within-plan variation in AV across benefits?
+    - Does the average AV mask variation in generosity by benefit type?
+    - Almost like a cluster analysis of those plans with higher-variation AVs across benefits?
 
