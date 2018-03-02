@@ -8,13 +8,11 @@ output:
 subtitle: Introduction to Basic Statistics in R
 ---
 # Data Set
-- Pick a data set you're already familiar with
-- You can use the HIX Compare one or another one you have access to
-- Read it in using whatever appropriate read_*() function fits your data type
-- Make sure the variables are formatted correctly
-- Encourage you to use a relatively small data set
-- R also has some built-in data sets that can be used
-- MASS (about Massachussets), mtcars, in the datasets package
+- I'm going to stick with the HIX Compare Data we've been using so far
+```{r loaddata}
+load(file="plancounts.Rdata")
+```
+
 
 # Basic Statistics
 - simpleR package
