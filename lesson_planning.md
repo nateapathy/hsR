@@ -139,3 +139,36 @@ We're going to work almost exclusively with data frames today.
 - summarizing a dataset for plots
 - ggplot() grammar
 - adding elements to a single graph
+
+# Session 5: Introduction to Stats in R
+
+## Data Set
+- Pick a data set you're already familiar with
+- You can use the HIX Compare one or another one you have access to
+- Read it in using whatever appropriate read_*() function fits your data type
+- Make sure the variables are formatted correctly
+- Encourage you to use a relatively small data set
+- R also has some built-in data sets that can be used
+- MASS (about Massachussets), mtcars, in the datasets package
+
+## Basic Statistics
+- simpleR package
+- resources
+    - [quickR guide](https://www.statmethods.net/stats/index.html)
+    - [R tutor guide](http://www.r-tutor.com/elementary-statistics)
+- correlations
+- t-tests
+- chi-square
+- wilcoxon rank sum
+- mcnemar
+- simple linear regression
+
+## Multivariate Linear and Logistic Regressions
+- next week we are going to do a review of regression assumptions
+- then we will dive further into regression functions next week and the week after
+- linear regression, output, using output from linear models
+- logistic regression, attending to data types
+
+
+
+
