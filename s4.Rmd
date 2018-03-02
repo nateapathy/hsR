@@ -135,6 +135,5 @@ ggplot(plancounts,aes(x=areaplans,y=avg27prem)) + geom_point(aes(color=METAL))
 
 ```{r saveplancounts}
 save(plancounts, file="plancounts.Rdata")
-
 ```
 

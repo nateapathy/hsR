@@ -7,22 +7,56 @@ output:
     df_print: paged
 subtitle: Introduction to Basic Statistics in R
 ---
+```{r packages}
+library(Hmisc)
+library(datasets)
+library(stats)
+library(corrgram)
+library(corrplot)
+library(tidyverse)
+```
+
+
 # Data Set
 - I'm going to stick with the HIX Compare Data we've been using so far
 ```{r loaddata}
 load(file="plancounts.Rdata")
+head(plancounts)
 ```
 
-
 # Basic Statistics
-- simpleR package
+```{r}
+table(plancounts$YEAR,plancounts$METAL)
+margin.table(table(plancounts$YEAR,plancounts$METAL),2)
+testtbl <- prop.table(table(plancounts$YEAR,plancounts$METAL),1)
+```
+
 - resources
     - [quickR guide](https://www.statmethods.net/stats/index.html)
     - [R tutor guide](http://www.r-tutor.com/elementary-statistics)
     - [multivariate analysis guide](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/)
 - correlations
+
+```{r}
+data("mtcars")
+mtcars
+cormat <- cor(mtcars)
+rcorr(mtcars$cyl,mtcars$mpg, type="pearson")
+rcorr(plancounts$avg27prem,plancounts$areaplans)
+corrgram(mtcars, order=TRUE, lower.panel=panel.shade,
+  upper.panel=panel.cor, text.panel=panel.txt)
+```
+
 - t-tests
+```{r}
+t.test(plancounts[plancounts$METAL==c("Gold","Silver"),]$avg27prem~plancounts[plancounts$METAL==c("Gold","Silver"),]$METAL)
+```
+
 - chi-square
+```{r}
+chisq.test(testtbl)
+```
+
 - wilcoxon rank sum
 - mcnemar
 - simple linear regression
@@ -32,3 +66,13 @@ load(file="plancounts.Rdata")
 - then we will dive further into regression functions next week and the week after
 - linear regression, output, using output from linear models
 - logistic regression, attending to data types
+
+```{r}
+form <- formula(mpg~cyl+disp)
+
+lm(form,data = mtcars)
+
+logreg <- glm(am ~ disp + hp + cyl, data=mtcars, family=binomial(link="logit"))
+summary(logreg)
+```
+

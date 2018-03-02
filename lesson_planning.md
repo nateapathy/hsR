@@ -152,7 +152,6 @@ We're going to work almost exclusively with data frames today.
 - MASS (about Massachussets), mtcars, in the datasets package
 
 ## Basic Statistics
-- simpleR package
 - resources
     - [quickR guide](https://www.statmethods.net/stats/index.html)
     - [R tutor guide](http://www.r-tutor.com/elementary-statistics)
