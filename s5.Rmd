@@ -7,7 +7,7 @@ output:
     df_print: paged
 subtitle: Introduction to Basic Statistics in R
 ---
-## Data Set
+# Data Set
 - Pick a data set you're already familiar with
 - You can use the HIX Compare one or another one you have access to
 - Read it in using whatever appropriate read_*() function fits your data type
@@ -16,7 +16,7 @@ subtitle: Introduction to Basic Statistics in R
 - R also has some built-in data sets that can be used
 - MASS (about Massachussets), mtcars, in the datasets package
 
-## Basic Statistics
+# Basic Statistics
 - simpleR package
 - resources
     - [quickR guide](https://www.statmethods.net/stats/index.html)
@@ -28,7 +28,7 @@ subtitle: Introduction to Basic Statistics in R
 - mcnemar
 - simple linear regression
 
-## Multivariate Linear and Logistic Regressions
+# Multivariate Linear and Logistic Regressions
 - next week we are going to do a review of regression assumptions
 - then we will dive further into regression functions next week and the week after
 - linear regression, output, using output from linear models
