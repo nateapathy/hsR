@@ -156,6 +156,7 @@ We're going to work almost exclusively with data frames today.
 - resources
     - [quickR guide](https://www.statmethods.net/stats/index.html)
     - [R tutor guide](http://www.r-tutor.com/elementary-statistics)
+    - [multivariate analysis guide](https://little-book-of-r-for-multivariate-analysis.readthedocs.io/en/latest/)
 - correlations
 - t-tests
 - chi-square
