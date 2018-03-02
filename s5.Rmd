@@ -7,7 +7,7 @@ output:
     df_print: paged
 subtitle: Introduction to Basic Statistics in R
 ---
-```{r packages}
+```{r packages, include=FALSE}
 library(Hmisc)
 library(datasets)
 library(stats)
