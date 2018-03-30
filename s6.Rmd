@@ -1,0 +1,19 @@
+---
+title: 'hsR Session 6: Regression Diagnostics & Assumptions in R'
+author: "Nate Apathy"
+date: "3/30/2018"
+output: html_document
+---
+
+# Regression Assumptions
+
+1. Model is linear in the parameters
+2. Samples are independent and random (implies no serial correlation in the errors)
+3. No perfect collinearity in the regressors
+4. Zero conditional mean of the error (expected value of residual is 0)
+5. Homoskedasticity of the error terms
+6. Errors normally distributed
+7. No serial correlation in the errors
+8. Non-zero sample variance in x
+
+# Resources

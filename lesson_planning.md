@@ -169,6 +169,11 @@ We're going to work almost exclusively with data frames today.
 - linear regression, output, using output from linear models
 - logistic regression, attending to data types
 
+# Session 6: Regression Assumptions Review & Implementation
+
+## Regression Assumptions
+- Review the assumptions of multiple linear regression
+- Use the "regression_assumptions() file
 
 
 
