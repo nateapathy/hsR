@@ -130,8 +130,8 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li>Model is linear in the parameters</li>
 <li>Samples are independent and random (implies no serial correlation in the errors)</li>
-<li>No perfect collinearity in the regressors</li>
 <li>Zero conditional mean of the error (expected value of residual is 0)</li>
+<li>No perfect collinearity in the regressors</li>
 <li>Homoskedasticity of the error terms</li>
 <li>Errors normally distributed</li>
 <li>No serial correlation in the errors</li>
@@ -147,7 +147,52 @@ $(document).ready(function () {
 </div>
 <div id="checking-specific-assumptions" class="section level1">
 <h1>Checking Specific Assumptions</h1>
-<p><em>Note: some of these we don’t need to “check,” like linearity in the parameters.</em></p>
+<p><em>Some of these we don’t need to “check,” like linearity in the parameters. That has to do with model specification, and by doing a linear model we are constraining the parameters (ß values) to be linear. Similarly, the second assumption relates to sampling approach, and we will get to its implications in #7.</em></p>
+<p><em>We will be doing these exercises on the hixsamp.Rdata we created earlier in the lessons.</em></p>
+<div id="first-step-create-a-regression" class="section level2">
+<h2>First Step: Create a regression!</h2>
+<ul>
+<li>Using the hixsamp data frame, let’s make a basic model and then look at its adherence to the regression assumptions.</li>
+</ul>
+<pre class="r"><code># Build our regression
+hixlm &lt;- lm(PREMC2C30 ~ ST + as.factor(PLANTYPE) + METAL, data = hixsamp)
+
+summary(hixlm)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = PREMC2C30 ~ ST + as.factor(PLANTYPE) + METAL, data = hixsamp)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -720.81 -160.19   -0.14  152.58 1379.54 
+## 
+## Coefficients:
+##                       Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)           931.1898     9.2177 101.022  &lt; 2e-16 ***
+## STMA                  206.9274     7.5090  27.557  &lt; 2e-16 ***
+## as.factor(PLANTYPE)2 -254.0893     7.8579 -32.336  &lt; 2e-16 ***
+## as.factor(PLANTYPE)3 -137.6490    25.5352  -5.391 7.32e-08 ***
+## as.factor(PLANTYPE)4    0.6258    12.1534   0.051    0.959    
+## METALCatastrophic    -128.8884    15.0821  -8.546  &lt; 2e-16 ***
+## METALGold             527.1158    10.0847  52.269  &lt; 2e-16 ***
+## METALPlatinum         823.8980    11.4576  71.908  &lt; 2e-16 ***
+## METALSilver           236.0373     9.8883  23.870  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 244.7 on 5410 degrees of freedom
+## Multiple R-squared:  0.6446, Adjusted R-squared:  0.644 
+## F-statistic:  1226 on 8 and 5410 DF,  p-value: &lt; 2.2e-16</code></pre>
+<ul>
+<li>Here we’ve modeled the Premium amount for a family with 2 kids and 2 parents above age 30 as a function of state (California or Massachussets), plan type (PPO, HMO, etc), and Metal tier.</li>
+</ul>
+</div>
+<div id="zero-conditional-mean" class="section level2">
+<h2>Zero Conditional Mean</h2>
+<ul>
+<li>This is satisfied if the average residual value is at (or so small to effectively be) zero.</li>
+</ul>
+</div>
 </div>
 
 

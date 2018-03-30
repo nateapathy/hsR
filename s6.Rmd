@@ -5,7 +5,7 @@ date: "3/30/2018"
 output: html_document
 ---
 
-```{r packages, include=FALSE}
+```{r pckgs&data, include=FALSE}
 library(tidyverse)
 library(Hmisc)
 library(datasets)
@@ -14,14 +14,16 @@ library(corrgram)
 library(corrplot)
 library(tidyverse)
 library(gvlma)
+
+load(file="hixsamp.Rdata")
 ```
 
 # Regression Assumptions
 
 1. Model is linear in the parameters
 2. Samples are independent and random (implies no serial correlation in the errors)
-3. No perfect collinearity in the regressors
-4. Zero conditional mean of the error (expected value of residual is 0)
+3. Zero conditional mean of the error (expected value of residual is 0)
+4. No perfect collinearity in the regressors
 5. Homoskedasticity of the error terms
 6. Errors normally distributed
 7. No serial correlation in the errors
@@ -32,4 +34,38 @@ library(gvlma)
 - [R Stats Detailed Walkthrough](http://r-statistics.co/Assumptions-of-Linear-Regression.html)
 
 # Checking Specific Assumptions
-*Note: some of these we don't need to "check," like linearity in the parameters.*
+*Some of these we don't need to "check," like linearity in the parameters. That has to do with model specification, and by doing a linear model we are constraining the parameters (ß values) to be linear. Similarly, the second assumption relates to sampling approach, and we will get to its implications in #7.*
+
+*We will be doing these exercises on the hixsamp.Rdata we created earlier in the lessons.*
+
+## First Step: Create a regression!
+- Using the hixsamp data frame, let's make a basic model and then look at its adherence to the regression assumptions.
+```{r}
+# Build our regression
+hixlm <- lm(PREMC2C30 ~ ST + as.factor(PLANTYPE) + METAL, data = hixsamp)
+
+summary(hixlm)
+```
+- Here we've modeled the Premium amount for a family with 2 kids and 2 parents above age 30 as a function of state (California or Massachussets), plan type (PPO, HMO, etc), and Metal tier.
+
+## Zero Conditional Mean
+- This is satisfied if the average residual value is at (or so small to effectively be) zero.
+
+```{r}
+mean(hixlm$residuals)
+# this appears to be satisfied because the value is so small
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
