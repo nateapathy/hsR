@@ -28,3 +28,8 @@ library(gvlma)
 8. Non-zero sample variance in x
 
 # Resources
+- [Quick-R Tutorial](https://www.statmethods.net/stats/rdiagnostics.html)
+- [R Stats Detailed Walkthrough](http://r-statistics.co/Assumptions-of-Linear-Regression.html)
+
+# Checking Specific Assumptions
+*Note: some of these we don't need to "check," like linearity in the parameters.*
