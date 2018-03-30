@@ -5,6 +5,17 @@ date: "3/30/2018"
 output: html_document
 ---
 
+```{r packages, include=FALSE}
+library(tidyverse)
+library(Hmisc)
+library(datasets)
+library(stats)
+library(corrgram)
+library(corrplot)
+library(tidyverse)
+library(gvlma)
+```
+
 # Regression Assumptions
 
 1. Model is linear in the parameters

@@ -173,7 +173,15 @@ We're going to work almost exclusively with data frames today.
 
 ## Regression Assumptions
 - Review the assumptions of multiple linear regression
-- Use the "regression_assumptions() file
+- Use the [regression_assumptions](https://github.iu.edu/natea/hsR/blob/master/regression_assumptions.pdf) file
+- Emphasize their implications for the estimates
+
+## How to do regression diagnostics in R
+- [Quick-R Tutorial](https://www.statmethods.net/stats/rdiagnostics.html)
+- [R Stats Detailed Walkthrough](http://r-statistics.co/Assumptions-of-Linear-Regression.html)
+- Assumption-specific steps
+- Automated evaluation with gvlma()
+
 
 
 
