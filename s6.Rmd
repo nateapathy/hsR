@@ -2,7 +2,13 @@
 title: 'hsR Session 6: Regression Diagnostics & Assumptions in R'
 author: "Nate Apathy"
 date: "3/30/2018"
-output: html_document
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 ---
 
 ```{r pckgs&data, include=FALSE}
@@ -14,6 +20,8 @@ library(corrgram)
 library(corrplot)
 library(tidyverse)
 library(gvlma)
+library(car)
+library(MASS)
 
 load(file="hixsamp.Rdata")
 ```
@@ -23,7 +31,7 @@ load(file="hixsamp.Rdata")
 1. Model is linear in the parameters
 2. Samples are independent and random (implies no serial correlation in the errors)
 3. Zero conditional mean of the error (expected value of residual is 0)
-4. No perfect collinearity in the regressors
+4. No multi-collinearity in the regressors
 5. Homoskedasticity of the error terms
 6. Errors normally distributed
 7. No serial correlation in the errors
@@ -54,18 +62,41 @@ summary(hixlm)
 ```{r}
 mean(hixlm$residuals)
 # this appears to be satisfied because the value is so small
+
+hist(hixlm$residuals)
+```
+
+## Normal Distribution of the Errors 
+```{r}
+# Normality of Residuals
+# qq plot for studentized residual
+qqPlot(hixlm, main="QQ Plot")
+# distribution of studentized residuals
+sresid <- studres(hixlm)
+hist(sresid, freq=FALSE, 
+   main="Distribution of Studentized Residuals")
+xfit<-seq(min(sresid),max(sresid),length=40) 
+yfit<-dnorm(xfit) 
+lines(xfit, yfit)
+```
+
+## Check for Multi-collinearity using the VIF (Variance Inflation Factor)
+```{r}
+vif(hixlm)
 ```
 
 
+## Plot Version
+```{r}
+plot(hixlm)
+```
 
 
-
-
-
-
-
-
-
-
+## Assessing Linearity of the Relationship
+```{r}
+# Evaluate Nonlinearity
+# component + residual plot 
+crPlots(hixlm)
+```
 
 
