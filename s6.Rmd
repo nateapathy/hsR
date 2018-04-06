@@ -48,9 +48,10 @@ load(file="hixsamp.Rdata")
 
 ## First Step: Create a regression!
 - Using the hixsamp data frame, let's make a basic model and then look at its adherence to the regression assumptions.
+
 ```{r}
 # Build our regression
-hixlm <- lm(PREMC2C30 ~ ST + as.factor(PLANTYPE) + METAL, data = hixsamp)
+hixlm <- lm(PREMC2C30 ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), data = hixsamp)
 
 summary(hixlm)
 ```
