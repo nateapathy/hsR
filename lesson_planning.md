@@ -182,6 +182,15 @@ We're going to work almost exclusively with data frames today.
 - Assumption-specific steps
 - Automated evaluation with gvlma()
 
+# Session 7: Different Types of Regression
 
-
+## Common Regression Models Used in HSR
+- [Tutorial](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html#interactions_and_factors)
+- Linear Regression
+- Logistic Regression
+    - Odds Ratios
+    - Marginal Effects
+    - Interactions
+- Multinomial Regression
+- Count Model Regressions
 
