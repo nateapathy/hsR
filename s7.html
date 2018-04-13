@@ -320,6 +320,13 @@ summary(hixlogreg)</code></pre>
 ##      8.883577e-01      7.870227e-07      1.038829e+02      5.593240e+02 
 ##       METALSilver  factor(YEAR)2017 
 ##      1.737331e+01      3.432026e+00</code></pre>
+<pre class="r"><code>exp(coef(hixlogreg))</code></pre>
+<pre><code>##       (Intercept)              STMA factor(PLANTYPE)2 factor(PLANTYPE)3 
+##      2.412697e-02      6.164334e+00      1.296945e-01      1.235481e+00 
+## factor(PLANTYPE)4 METALCatastrophic         METALGold     METALPlatinum 
+##      8.883577e-01      7.870227e-07      1.038829e+02      5.593240e+02 
+##       METALSilver  factor(YEAR)2017 
+##      1.737331e+01      3.432026e+00</code></pre>
 <pre class="r"><code>stargazer(hixlm,hixlogreg,type = &quot;html&quot;,style = &quot;qje&quot;)</code></pre>
 <table style="text-align:center">
 <tr>
@@ -710,6 +717,65 @@ Akaike Inf. Crit.
 </td>
 </tr>
 </table>
+</div>
+<div id="multinomial-regression-models" class="section level1">
+<h1>Multinomial Regression Models</h1>
+<pre class="r"><code>hixsamp$avgpremord &lt;- ordered(ntile(hixsamp$PREMC2C30,5))
+
+table(hixsamp$avgpremflag,hixsamp$avgpremord)</code></pre>
+<pre><code>##    
+##        1    2    3    4    5
+##   0 1084 1084  543    0    0
+##   1    0    0  541 1084 1083</code></pre>
+<pre class="r"><code>hixmnomreg &lt;- multinom(avgpremord ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), 
+                 data = hixsamp)</code></pre>
+<pre><code>## # weights:  55 (40 variable)
+## initial  value 8721.544047 
+## iter  10 value 6559.647991
+## iter  20 value 6111.883570
+## iter  30 value 5937.158172
+## iter  40 value 5794.712770
+## iter  50 value 5775.753326
+## iter  60 value 5775.434163
+## final  value 5775.433006 
+## converged</code></pre>
+<pre class="r"><code>sum &lt;- summary(hixmnomreg)
+
+exp(coef(hixmnomreg))</code></pre>
+<pre><code>##    (Intercept)      STMA factor(PLANTYPE)2 factor(PLANTYPE)3
+## 2 9.054460e-01  2.124050       0.249263919          16979372
+## 3 1.921695e-01  4.077861       0.113250823          22719400
+## 4 1.052709e-02 14.209326       0.030438882          21123994
+## 5 1.112564e-08 50.195980       0.005290215           9369372
+##   factor(PLANTYPE)4 METALCatastrophic    METALGold METALPlatinum
+## 2         0.8811539      2.247535e-01 2.771698e+01  4.474062e+10
+## 3         0.6430873      5.279280e-02 2.517870e+02  1.058579e+12
+## 4         1.0011014      1.858819e-09 5.814268e+03  3.764837e+13
+## 5         0.6907245      1.297200e-02 3.814827e+09  9.326580e+19
+##    METALSilver factor(YEAR)2017
+## 2 3.683230e+00         1.557146
+## 3 1.700617e+01         3.050303
+## 4 1.399186e+02         5.252208
+## 5 5.234691e+06        14.053389</code></pre>
+<pre class="r"><code>(1 - pnorm(abs(sum$coefficients/sum$standard.errors), 0, 1)) * 2</code></pre>
+<pre><code>##   (Intercept)         STMA factor(PLANTYPE)2 factor(PLANTYPE)3
+## 2   0.3614837 1.146661e-10                 0                 0
+## 3   0.0000000 0.000000e+00                 0                 0
+## 4   0.0000000 0.000000e+00                 0                 0
+## 5   0.0000000 0.000000e+00                 0                 0
+##   factor(PLANTYPE)4 METALCatastrophic METALGold METALPlatinum METALSilver
+## 2         0.4710294      0.000000e+00         0             0           0
+## 3         0.0417603      6.950839e-07         0             0           0
+## 4         0.9962962      0.000000e+00         0             0           0
+## 5         0.1791515      0.000000e+00         0             0           0
+##   factor(YEAR)2017
+## 2     2.549493e-05
+## 3     0.000000e+00
+## 4     0.000000e+00
+## 5     0.000000e+00</code></pre>
+</div>
+<div id="count-regression-models" class="section level1">
+<h1>Count Regression Models</h1>
 </div>
 
 

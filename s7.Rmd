@@ -15,6 +15,7 @@ output:
 library(tidyverse)
 library(stats)
 library(stargazer)
+library(nnet)
 load(file="hixsamp.Rdata")
 ```
 
@@ -42,6 +43,7 @@ hixlogreg <- glm(avgpremflag ~ ST + factor(PLANTYPE) + METAL + factor(YEAR),
 summary(hixlogreg)
 
 exp(hixlogreg$coefficients)
+exp(coef(hixlogreg))
 ```
 
 ```{r,results='asis'}
@@ -50,6 +52,18 @@ stargazer(hixlm,hixlogreg,type = "html",style = "qje")
 
 # Multinomial Regression Models
 ```{r}
+hixsamp$avgpremord <- ordered(ntile(hixsamp$PREMC2C30,5))
+
+table(hixsamp$avgpremflag,hixsamp$avgpremord)
+
+hixmnomreg <- multinom(avgpremord ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), 
+                 data = hixsamp)
+
+sum <- summary(hixmnomreg)
+
+exp(coef(hixmnomreg))
+
+(1 - pnorm(abs(sum$coefficients/sum$standard.errors), 0, 1)) * 2
 
 ```
 
