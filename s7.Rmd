@@ -1,0 +1,63 @@
+---
+title: 'hsR Session 7: HSRegressions'
+author: "Nate Apathy"
+date: "4/13/2018"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r pckgs&data, include=FALSE}
+library(tidyverse)
+library(stats)
+library(stargazer)
+load(file="hixsamp.Rdata")
+```
+
+# Linear Regression (from last week)
+```{r}
+# Build our regression
+hixlm <- glm(PREMC2C30 ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), data = hixsamp)
+
+summary(hixlm)
+```
+
+# Logistic Regression
+Dependent variable: whether or not a plan had an above average premium for a family of four.
+
+```{r}
+# prepare the variable
+# use the PREMC2C30 number
+# 1 if above average, 0 if below average
+
+hixsamp$avgpremflag <- ifelse(hixsamp$PREMC2C30>median(hixsamp$PREMC2C30),1,0)
+
+hixlogreg <- glm(avgpremflag ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), 
+                 data = hixsamp, family = binomial(link = "logit"))
+
+summary(hixlogreg)
+
+exp(hixlogreg$coefficients)
+```
+
+```{r,results='asis'}
+stargazer(hixlm,hixlogreg,type = "html",style = "qje")
+```
+
+# Multinomial Regression Models
+```{r}
+
+```
+
+
+
+# Count Regression Models
+
+
+
+
+

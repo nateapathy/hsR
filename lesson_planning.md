@@ -185,7 +185,7 @@ We're going to work almost exclusively with data frames today.
 # Session 7: Different Types of Regression
 
 ## Common Regression Models Used in HSR
-- [Tutorial](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html#interactions_and_factors)
+- [Tutorial](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html)
 - Linear Regression
 - Logistic Regression
     - Odds Ratios

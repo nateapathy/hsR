@@ -51,7 +51,7 @@ load(file="hixsamp.Rdata")
 
 ```{r}
 # Build our regression
-hixlm <- lm(PREMC2C30 ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), data = hixsamp)
+hixlm <- glm(PREMC2C30 ~ ST + factor(PLANTYPE) + METAL + factor(YEAR), data = hixsamp)
 
 summary(hixlm)
 ```
