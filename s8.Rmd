@@ -1,0 +1,37 @@
+---
+title: "hsR Session 8: Gettin' Causal"
+author: "Nate Apathy"
+date: "4/20/2018"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
+---
+
+```{r data&packages, include=FALSE}
+library(tidyverse)
+library(ggdag)
+```
+
+
+# DAGs in R & Review of Confounding
+- ggdag package - this is brand new and not well-developed, but it's what we have and can be useful!
+```{r}
+dagified <- dagify(x ~ z,
+                   y ~ z,
+                   exposure = "x",
+                   outcome = "y")
+tidy_dagitty(dagified)
+ggdag(dagified, layout="circle")
+```
+
+# Propensity Scores & Matching
+
+
+# Inverse Probability of Treatment Weighting (IPTW)
+
+
+# Instrumental Variables

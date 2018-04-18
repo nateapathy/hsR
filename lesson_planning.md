@@ -194,3 +194,15 @@ We're going to work almost exclusively with data frames today.
 - Multinomial Regression
 - Count Model Regressions
 
+# Session 9: Causal Inference
+
+## DAGs in R & Review of Confounding
+- ggdag package
+- 
+
+## Propensity Scores & Matching
+
+## Inverse Probability of Treatment Weighting (IPTW)
+
+## Instrumental Variables
+
