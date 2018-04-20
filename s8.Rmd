@@ -62,15 +62,18 @@ ggdag_adjustment_set(bigger_dag)
 # data from Crash Course in Causality (CCC) example
 load(file="PS_ex.Rdata")
 # object is psdata
-
+head(psdata)
 #covariates we will use (shorter list than you would use in practice)
-xvars<-c("ARF","CHF","Cirr","colcan","Coma","lungcan","MOSF","sepsis",
+xvars <- c("ARF","CHF","Cirr","colcan","Coma","lungcan","MOSF","sepsis",
          "age","female","meanbp1")
 
 #look at a table 1, stratified on treatment status (0/1)
-table1<- CreateTableOne(vars=xvars,strata="treatment", data=psdata, test=FALSE)
+table1 <- CreateTableOne(vars=xvars, 
+                         strata="treatment",
+                         data=psdata, 
+                         test=FALSE)
 ## include standardized mean difference (SMD)
-print(table1,smd=TRUE)
+print(table1, smd=TRUE)
 # a few of these show imbalance (i.e. SMD > 0.1)
 #tells you how much imbalance you might have
 ```
@@ -82,27 +85,51 @@ print(table1,smd=TRUE)
 
 #fit a propensity score model. logistic regression
 # treatment is the outcome, with all of the covariates. family=binomial means the outcome is binary, which makes it carry out a logistic regression
-psmodel<-glm(treatment~ARF+CHF+Cirr+colcan+Coma+lungcan+MOSF+
-               sepsis+age+female+meanbp1,
-             family=binomial(),data=psdata)
+psmodel <- glm(treatment ~ ARF +
+                        CHF + 
+                        Cirr + 
+                        colcan + 
+                        Coma + 
+                        lungcan + 
+                        MOSF + 
+                        sepsis + 
+                        age + 
+                        female + 
+                        meanbp1,
+             family=binomial(),
+             data=psdata)
 
 #show coefficients etc
 summary(psmodel)
 #create propensity score
-pscore<-psmodel$fitted.values
+pscore <- psmodel$fitted.values
+cbind(pscore,psmodel$model$treatment)
+pscoreq <- ntile(pscore,4)
+
+#newtable1
+newpsdat <- data.frame(cbind(pscoreq,pscore,psmodel$model))
+
 #fitted values are the values per subject of the fitted logistic model
 #he graphs the propensity score, but doesn't include the code
 
-#matching using MatchIt
+#### greedy matching
+# do greedy matching on logit(PS), using matching package
+# caliper argument means 0.2 * the standard deviation of what you have X defined as
+logit <- function(p) {log(p)-log(1-p)}
+psmatch <- Match(Tr=psdata$treatment, 
+                 M=1, X=logit(pscore), 
+                 replace=FALSE, 
+                 caliper=.2)
+matched <- psdata[unlist(psmatch[c("index.treated","index.control")]), ]
 
-m.out <- matchit(treatment~ARF+CHF+Cirr+colcan+Coma+lungcan+MOSF+sepsis+age+female+meanbp1, 
-                 data = psdata, method = "nearest")
-summary(m.out)
-#propensity score plots
-plot(m.out, type = "jitter")
-plot(m.out, type = "hist")
+#get standardized differences
+matchedtab1<-CreateTableOne(vars=xvars, strata ="treatment", 
+                            data=matched, test = FALSE)
+print(matchedtab1, smd = TRUE)
+#fewer subjects matched because of the restriction by the caliper
+#previously, we tolerated wider distances
+#we are now forcing better matches with the caliper
 ```
-
 
 # Inverse Probability of Treatment Weighting (IPTW)
 
