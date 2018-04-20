@@ -13,3 +13,6 @@
 # Assignments/Tasks
 - use issues with common prompt and different per-person tasks
   - then each person can pull in the data the same, be equal there, but then have to execute something specific to them and then share back to the issue thread
+
+# Resources
+- https://www.computerworld.com/article/3184778/data-analytics/6-useful-r-functions-you-might-not-know.html
