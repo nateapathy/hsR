@@ -1,9 +1,11 @@
 ---
-title: "hsR Session 8: Gettin' Causal"
+title: "hsR Session 8: Gettin' Causal with Propensity Scores"
 author: "Nate Apathy"
 date: "4/20/2018"
 output:
   html_document:
+    highlight: tango
+    theme: yeti
     df_print: paged
     toc: true
     toc_float:
@@ -14,11 +16,18 @@ output:
 ```{r data&packages, include=FALSE}
 library(tidyverse)
 library(ggdag)
+library(tableone)
+library(Matching)
+library(MatchIt)
 ```
 
-
 # DAGs in R & Review of Confounding
-- ggdag package - this is brand new and not well-developed, but it's what we have and can be useful!
+- Confounders are variables that impact both your treatment and outcome
+- Identifying and dealing with confounders is a major component of the work effort in developing a theoretical model, construct diagram, and model specification for analysis.
+- Options in R
+    - ggdag package - this is brand new and not well-developed, but it's what we have and can be useful!
+
+## Example 1 - simple dag
 ```{r}
 dagified <- dagify(x ~ z,
                    y ~ z,
@@ -28,10 +37,73 @@ tidy_dagitty(dagified)
 ggdag(dagified, layout="circle")
 ```
 
+## Example 2 - a more complex dag
+```{r}
+bigger_dag <- dagify(y ~ x + a + b,
+                     x ~ a + b,
+                     exposure = "x",
+                     outcome = "y")
+
+ggdag_paths(bigger_dag)
+
+ggdag_parents(bigger_dag, "x")
+
+ggdag_adjustment_set(bigger_dag)
+
+```
+
+
 # Propensity Scores & Matching
+
+- examples that follow are from the [Crash Course in Causality on Coursera](https://www.coursera.org/learn/crash-course-in-causality/home/welcome) which I encourage everyone to do at some point
+- it's a five week free course that goes into several components of causal inference with examples in R
+- I've pulled these examples from that course
+```{r}
+# data from Crash Course in Causality (CCC) example
+load(file="PS_ex.Rdata")
+# object is psdata
+
+#covariates we will use (shorter list than you would use in practice)
+xvars<-c("ARF","CHF","Cirr","colcan","Coma","lungcan","MOSF","sepsis",
+         "age","female","meanbp1")
+
+#look at a table 1, stratified on treatment status (0/1)
+table1<- CreateTableOne(vars=xvars,strata="treatment", data=psdata, test=FALSE)
+## include standardized mean difference (SMD)
+print(table1,smd=TRUE)
+# a few of these show imbalance (i.e. SMD > 0.1)
+#tells you how much imbalance you might have
+```
+
+```{r}
+##########################
+#propensity score matching
+#########################
+
+#fit a propensity score model. logistic regression
+# treatment is the outcome, with all of the covariates. family=binomial means the outcome is binary, which makes it carry out a logistic regression
+psmodel<-glm(treatment~ARF+CHF+Cirr+colcan+Coma+lungcan+MOSF+
+               sepsis+age+female+meanbp1,
+             family=binomial(),data=psdata)
+
+#show coefficients etc
+summary(psmodel)
+#create propensity score
+pscore<-psmodel$fitted.values
+#fitted values are the values per subject of the fitted logistic model
+#he graphs the propensity score, but doesn't include the code
+
+#matching using MatchIt
+
+m.out <- matchit(treatment~ARF+CHF+Cirr+colcan+Coma+lungcan+MOSF+sepsis+age+female+meanbp1, 
+                 data = psdata, method = "nearest")
+summary(m.out)
+#propensity score plots
+plot(m.out, type = "jitter")
+plot(m.out, type = "hist")
+```
 
 
 # Inverse Probability of Treatment Weighting (IPTW)
 
 
-# Instrumental Variables

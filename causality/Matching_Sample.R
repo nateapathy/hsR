@@ -39,10 +39,9 @@ treatment<-as.numeric(rhc$swang1=='RHC')
 meanbp1<-rhc$meanbp1
 
 #new dataset
-mydata<-cbind(ARF,CHF,Cirr,colcan,Coma,lungcan,MOSF,sepsis,
-              age,female,meanbp1,treatment,died)
-mydata<-data.frame(mydata)
-
+psdata<-data.frame(cbind(ARF,CHF,Cirr,colcan,Coma,lungcan,MOSF,sepsis,
+              age,female,meanbp1,treatment,died))
+save(psdata,file="PS_ex.Rdata")
 #covariates we will use (shorter list than you would use in practice)
 xvars<-c("ARF","CHF","Cirr","colcan","Coma","lungcan","MOSF","sepsis",
          "age","female","meanbp1")

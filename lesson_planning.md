@@ -194,15 +194,25 @@ We're going to work almost exclusively with data frames today.
 - Multinomial Regression
 - Count Model Regressions
 
-# Session 9: Causal Inference
+# Session 9: Causal Inference (Propensity Scores & IPTW)
 
 ## DAGs in R & Review of Confounding
-- ggdag package
-- 
+- [review](https://cran.r-project.org/web/packages/ggdag/vignettes/bias-structures.html) of sources of bias
+- ggdag [package](https://cran.r-project.org/web/packages/ggdag/index.html)
+    - [introduction vignette](https://cran.r-project.org/web/packages/ggdag/vignettes/intro-to-ggdag.html)
 
 ## Propensity Scores & Matching
+- review of packages built for propensity scoring
+    - Matching [example](http://sekhon.berkeley.edu/matching/)
+    - MatchIt [example](http://pareonline.net/pdf/v19n18.pdf)
+    - nonrandom [example](https://cran.r-project.org/web/packages/nonrandom/vignettes/nonrandom.pdf)
+- also can do this with logistic regression
+- we will do an example using the [Matching](https://cran.r-project.org/web/packages/Matching/Matching.pdf) package
 
 ## Inverse Probability of Treatment Weighting (IPTW)
+
+
+# Session 10: Causal Inference (Instrumental Variables)
 
 ## Instrumental Variables
 
