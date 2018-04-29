@@ -14,10 +14,8 @@
 - use issues with common prompt and different per-person tasks
   - then each person can pull in the data the same, be equal there, but then have to execute something specific to them and then share back to the issue thread
 
-<<<<<<< HEAD
 # Notes from workshop 1, feedback for the next iteration of the workshop
 - 
-=======
+
 # Resources
 - https://www.computerworld.com/article/3184778/data-analytics/6-useful-r-functions-you-might-not-know.html
->>>>>>> 30ba258609f8eeccfbd455b677e69aec9720127f
