@@ -13,3 +13,6 @@
 # Assignments/Tasks
 - use issues with common prompt and different per-person tasks
   - then each person can pull in the data the same, be equal there, but then have to execute something specific to them and then share back to the issue thread
+
+# Notes from workshop 1, feedback for the next iteration of the workshop
+- 

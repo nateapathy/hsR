@@ -186,6 +186,8 @@ We're going to work almost exclusively with data frames today.
 
 ## Common Regression Models Used in HSR
 - [Tutorial](http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html)
+- [Fitting models to your data](https://magesblog.com/post/2011-12-01-fitting-distributions-with-r/)
+    - Distributions & [modeling](https://magesblog.com/img/magesblog/distributions.png)
 - Linear Regression
 - Logistic Regression
     - Odds Ratios
