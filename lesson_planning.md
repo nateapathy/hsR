@@ -215,10 +215,13 @@ We're going to work almost exclusively with data frames today.
 
 
 # Session 10: Causal Inference (Diff in Diff, RD, & Instrumental Variables)
-Reading
-Pomeranz D. [Impact Evaluation Methods in Public Economics: A Brief Introduction to Randomized Evaluations and Comparison with Other Methods. Public Finance Review](https://paperpile.com/shared/ueOzYd). 2017 Jan 1;45(1):10–43. Available from: https://doi.org/10.1177/1091142115614392
+*Reading*
+Pomeranz D. [Impact Evaluation Methods in Public Economics: A Brief Introduction to Randomized Evaluations and Comparison with Other Methods](https://paperpile.com/shared/ueOzYd). Public Finance Review. 2017 Jan 1;45(1):10–43. Available from: https://doi.org/10.1177/1091142115614392
+
+Colonescu C. [Principles of Econometrics with  R](https://bookdown.org/ccolonescu/RPoE4/). ebook
 
 ## Difference in Differences
+[Colonescu](https://bookdown.org/ccolonescu/RPoE4/indvars.html#the-difference-in-differences-estimator)
 
 ## Regression Discontinuity
 
