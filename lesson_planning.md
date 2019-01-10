@@ -214,7 +214,13 @@ We're going to work almost exclusively with data frames today.
 ## Inverse Probability of Treatment Weighting (IPTW)
 
 
-# Session 10: Causal Inference (Instrumental Variables)
+# Session 10: Causal Inference (Diff in Diff, RD, & Instrumental Variables)
+Reading
+Pomeranz D. [Impact Evaluation Methods in Public Economics: A Brief Introduction to Randomized Evaluations and Comparison with Other Methods. Public Finance Review](https://paperpile.com/shared/ueOzYd). 2017 Jan 1;45(1):10–43. Available from: https://doi.org/10.1177/1091142115614392
+
+## Difference in Differences
+
+## Regression Discontinuity
 
 ## Instrumental Variables
 
