@@ -47,7 +47,7 @@ xvars<-c("ARF","CHF","Cirr","colcan","Coma","lungcan","MOSF","sepsis",
          "age","female","meanbp1")
 
 #look at a table 1, stratified on treatment status (0/1)
-table1<- CreateTableOne(vars=xvars,strata="treatment", data=mydata, test=FALSE)
+table1<- CreateTableOne(vars=xvars,strata="treatment", data=psdata, test=FALSE)
 ## include standardized mean difference (SMD)
 print(table1,smd=TRUE)
 # a few of these show imbalance (i.e. SMD > 0.1)
@@ -60,9 +60,9 @@ print(table1,smd=TRUE)
 # Tr is what is the treatment variable
 # M=1 is pair matching, set to the number of k matches you want
 # X is the set of variables you want to match on
-greedymatch<-Match(Tr=treatment,M=1,X=mydata[xvars],replace=FALSE)
+greedymatch<-Match(Tr=treatment,M=1,X=psdata[xvars],replace=FALSE)
 # greedymatch creates an index by treated and control based on original pairs
-matched<-mydata[unlist(greedymatch[c("index.treated","index.control")]), ]
+matched<-psdata[unlist(greedymatch[c("index.treated","index.control")]), ]
 # ^^ this is a new dataset with the indices assigned per pair
 
 #get table 1 for matched data with standardized differences
